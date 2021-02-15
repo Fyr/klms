@@ -26,9 +26,6 @@
 	echo $this->PHForm->input('phone', array(
 		'label' => array('class' => 'col-md-3 control-label', 'text' => __('Phone'))
 	));
-	echo $this->PHForm->input('worktime', array(
-		'label' => array('class' => 'col-md-3 control-label', 'text' => __('Work time'))
-	));
 	echo $this->PHForm->input('email');
 
 	echo $this->element('AdminUI/form_save');
@@ -37,3 +34,4 @@
 		</div>
 	</div>
 </div>
+

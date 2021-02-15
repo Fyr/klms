@@ -8,7 +8,7 @@ class ObjectTypeHelper extends AppHelper {
             'index' => array(
                 'Article' => __('Articles'),
                 'Page' => __('Static pages'),
-                'News' => __('Events'),
+                'News' => __('News'),
                 'Category' => __('Categories'),
                 'Subcategory' => __('Subcategories'),
                 'Product' => __('Museum items'),

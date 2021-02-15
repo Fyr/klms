@@ -9,7 +9,7 @@ class AppModel extends Model {
     }
 
     protected function _beforeInit() {
-        $this->useDbConfig = $this->getLang();
+        // $this->useDbConfig = $this->getLang();
     }
 
     protected function _afterInit() {

@@ -22,22 +22,10 @@ class AdminController extends AppController {
 	
 	public function beforeRenderLayout() {
 		$this->set('isAdmin', $this->isAdmin());
-		$this->set('aLangs', Configure::read('Config.langs'));
-		$this->set('lang', Configure::read('Config.language'));
 	}
 	
 	public function isAdmin() {
 		return AuthComponent::user('id') == 1;
-	}
-
-	public function isAuthorized($user) {
-		$group_id = Hash::get($user, 'group_id');
-		if ($group_id == 10) {
-			$this->set('currUser', $user);
-			return Hash::get($user, 'active');
-		}
-		$this->redirect($this->Auth->loginAction);
-		return false;
 	}
 
 	public function index() {

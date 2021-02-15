@@ -10,6 +10,7 @@ Cache::config('tasks', array(
 ));
 
 CakePlugin::loadAll();
+Configure::write('Config.language', 'eng');
 //CakePlugin::load('DebugKit');
 
 Configure::write('Dispatcher.filters', array(
@@ -40,11 +41,6 @@ Configure::write('media', array(
 ));
 
 define('TEST_ENV', strpos($_SERVER['SERVER_NAME'], '.loc') > 0);
-Configure::write('ProductCSVParser', array(
-	'photo_path' => WWW_ROOT.'photo'.DS,
-	'photo_path_3d' => WWW_ROOT.'photo'.DS.'3D'.DS,
-	'log' => WWW_ROOT.'parser_log.txt'
-));
 
 function fdebug($data, $logFile = 'tmp.log', $lAppend = true) {
 	file_put_contents($logFile, mb_convert_encoding(print_r($data, true), 'cp1251', 'utf8'), ($lAppend) ? FILE_APPEND : null);

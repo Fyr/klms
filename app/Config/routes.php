@@ -1,7 +1,8 @@
 <?php
 Router::parseExtensions('json', 'xml');
 
-Router::connect('/', array('controller' => 'pages', 'action' => 'home'));
+// Router::connect('/', array('controller' => 'pages', 'action' => 'home'));
+Router::connect('/', array('controller' => 'admin', 'action' => 'index'));
 
 Router::connect('/news', array(
 	'controller' => 'news',
