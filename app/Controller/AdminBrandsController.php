@@ -2,13 +2,13 @@
 App::uses('AppController', 'Controller');
 App::uses('AdminController', 'Controller');
 App::uses('AdminContentController', 'Controller');
-class AdminNewsController extends AdminContentController {
-    public $name = 'AdminNews';
-    public $uses = array('News');
+class AdminBrandsController extends AdminContentController {
+    public $name = 'AdminBrands';
+    public $uses = array('Brand');
 
     public $paginate = array(
         'conditions' => array(),
-        'fields' => array('modified', 'title', 'slug', 'published', 'featured', 'Media.*'),
+        'fields' => array('created', 'title', 'slug', 'published', 'featured', 'Media.*'),
         'limit' => 10
     );
 }

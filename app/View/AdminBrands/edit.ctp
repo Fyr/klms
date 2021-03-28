@@ -1,6 +1,6 @@
 <?
     $id = $this->request->data($objectType.'.id');
-    $title = __('Static content');
+    $title = __('Products');
     $breadcrumbs = array(
         $title => 'javascript:;',
         $this->ObjectType->getTitle('index', $objectType) => array('action' => 'index'),
@@ -21,8 +21,11 @@
 
     $tabs = array(
         __('General') => $this->Html->div('form-body',
-            $this->PHForm->input('title', array('label' => array('class' => 'col-md-3 control-label', 'text' => __('Title'))))
+            $this->element('AdminUI/checkboxes', array('labels' => array('published' => __('Published'), 'featured' => __('For home page'))))
+            .$this->PHForm->input('title', array('label' => array('class' => 'col-md-3 control-label', 'text' => __('Title'))))
             .$this->PHForm->input('slug')
+            .$this->PHForm->input('teaser', array('label' => array('class' => 'col-md-3 control-label', 'text' => __('Teaser'))))
+            //.$this->PHForm->input('sorting', array('class' => 'form-control input-small'))
         ),
         __('Text') => $this->element('Article.edit_body', array('field' => 'body')),
         __('SEO') => $this->element('Seo.edit', array('object_type' => $objectType)),

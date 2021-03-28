@@ -53,11 +53,13 @@
 			array('label' => __('Pages'), 'url' => array('controller' => 'AdminPages', 'action' => 'index')),
 			array('label' => __('News'), 'url' => array('controller' => 'AdminNews', 'action' => 'index')),
 		)),
-		/*
-		array('label' => __('Collections'), 'icon' => 'icon-docs', 'url' => '', 'submenu' => array(
-			array('label' => __('Categories'), 'url' => array('controller' => 'AdminCategories', 'action' => 'index')),
-			array('label' => __('Museum items'), 'url' => array('controller' => 'AdminProducts', 'action' => 'index', 'page' => 1, 'limit' => 20)),
+		array('label' => __('Products'), 'icon' => 'icon-docs', 'url' => '', 'submenu' => array(
+			array('label' => __('Brands'), 'url' => array('controller' => 'AdminBrands', 'action' => 'index')),
+			// array('label' => __('Categories'), 'url' => array('controller' => 'AdminCategories', 'action' => 'index')),
+			array('label' => __('Tags'), 'url' => array('controller' => 'AdminTags', 'action' => 'index')),
+			// array('label' => __('Museum items'), 'url' => array('controller' => 'AdminProducts', 'action' => 'index', 'page' => 1, 'limit' => 20)),
 		)),
+			/*
 		array('label' => __('Background tasks'), 'icon' => 'icon-paper-plane', 'url' => '', 'submenu' => array(
 			array('label' => __('Product Parser'), 'url' => array('controller' => 'AdminParser', 'action' => 'index')),
 		)),

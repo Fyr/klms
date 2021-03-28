@@ -70,6 +70,7 @@
 	.navbar-nav > li.link > a.lang.active { font-weight: bold; }
 	/* .page-header.navbar .top-menu .navbar-nav > li.dropdown > a.dropdown-toggle { padding-top: 14px; color: #bbc1c8; }
 	.page-header.navbar .top-menu .navbar-nav > li.dropdown > a.dropdown-toggle:hover { padding-top: 14px; color: #e5e7ea; } */
+	.admin-thumb { width: 50px; }
 </style>
 	<script src="http://<?=Configure::read('domain.url')?>/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 </head>

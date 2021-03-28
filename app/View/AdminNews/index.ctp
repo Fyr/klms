@@ -1,7 +1,7 @@
 <?
     $title = __('Static content');
     $breadcrumbs = array(
-        __('Static content') => 'javascript:;',
+        $title => 'javascript:;',
         $this->ObjectType->getTitle('index', $objectType) => ''
     );
     echo $this->element('AdminUI/breadcrumbs', compact('breadcrumbs'));
@@ -9,11 +9,24 @@
     echo $this->Flash->render();
 
     $columns = $this->PHTableGrid->getDefaultColumns($objectType);
-    $columns[$objectType.'.title']['label'] = __('Title');
-    $columns['News.modified']['label'] = __('Date');
-    $columns['News.featured']['label'] = __('Home page');
+    $columns[$objectType.'.modified']['label'] = __('Date');
+    $columns[$objectType.'.featured']['label'] = __('Home page');
+    unset($columns['Media.*']);
+    array_unshift($columns, array('key' => 'Media.image', 'label' => __('Photo'), 'format' => 'string', 'align' => 'center'));
+
     $row_actions = '../AdminNews/_row_actions';
+
+    $rowset = $this->PHTableGrid->getDefaultRowset($objectType);
+    foreach($rowset as &$row) {
+        $src = $this->Media->imageUrl($row, '100x');
+        $row['Media']['image'] = ($src) ? $this->Html->image($src, array('class' => 'admin-thumb')) : '';
+    }
 ?>
+<style>
+    .table.dataTable > tbody > tr > td:first-child {
+        text-align: center;
+    }
+</style>
 <div class="row">
     <div class="col-md-12">
         <div class="portlet light bordered">
@@ -33,7 +46,7 @@
                         </div>
                     </div>
                 </div>
-                <?=$this->PHTableGrid->render($objectType, compact('row_actions', 'columns'))?>
+                <?=$this->PHTableGrid->render($objectType, compact('row_actions', 'columns', 'rowset'))?>
             </div>
         </div>
     </div>

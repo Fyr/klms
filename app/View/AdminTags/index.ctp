@@ -1,5 +1,5 @@
 <?
-    $title = __('Static content');
+    $title = __('Products');
     $breadcrumbs = array(
         $title => 'javascript:;',
         $this->ObjectType->getTitle('index', $objectType) => ''
@@ -8,9 +8,10 @@
     echo $this->element('AdminUI/title', compact('title'));
     echo $this->Flash->render();
 
-    $columns = $this->PHTableGrid->getDefaultColumns($objectType);
-    $columns[$objectType.'.title']['label'] = __('Title');
-    $row_actions = '../AdminPages/_row_actions';
+    // $columns = $this->PHTableGrid->getDefaultColumns($objectType);
+    // $columns[$objectType.'.title']['label'] = __('Title');
+    //$row_actions = '../AdminPages/_row_actions';
+    // , compact('row_actions', 'columns')
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -31,7 +32,7 @@
                         </div>
                     </div>
                 </div>
-                <?=$this->PHTableGrid->render($objectType, compact('row_actions', 'columns'))?>
+                <?=$this->PHTableGrid->render($objectType)?>
             </div>
         </div>
     </div>
