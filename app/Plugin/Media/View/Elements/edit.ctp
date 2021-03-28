@@ -55,7 +55,7 @@
 				{% if (o.media_type == 'image') { %}
 				<button type="button" class="btn btn-success" onclick="mediaGrid.actionSetMain({%=o.id%})"><i class="icon-white icon-ok"></i> <?=__d('media', 'Set as main')?></button>
 				{% } %}
-				<button type="button" class="btn btn-danger" onclick="if (confirm('<?=__d('media', 'Are your sure to delete this record?')?>')) { mediaGrid.actionDelete({%=o.id%}); }"><i class="icon-white icon-trash"></i> <?=__d('media', 'Delete')?></button>
+				<button type="button" class="btn btn-danger" onclick="mediaGrid.actionDelete({%=o.id%})"><i class="icon-white icon-trash"></i> <?=__d('media', 'Delete')?></button>
 				<br/>
 				<h4><?=__d('media', 'Original file')?></h4>
 				<?=__d('media', 'Uploaded')?>: {%=o.created%}<br/>
@@ -77,13 +77,17 @@
 				<a href="{%=o.url_download%}" target="_blank"><?=__d('media', 'Download')?></a>
 				</div>
 				{% if (o.media_type == 'image') { %}
-				<h4><?=__d('media', 'Resize')?></h4>
+				<h4><?=__d('media', 'Resize & Rotate')?></h4>
 				<div class="media-resize">
-					<?=__d('media', 'Width')?> x <?=__d('media', 'Height')?>: <input type="text" class="form-control" id="media-w" name="" value="" onfocus="this.select()" onchange="mediaGrid.updateImageURL({%=o.id%})" /> x
-					<input type="text" class="form-control" id="media-h" value="" onfocus="this.select()" onchange="mediaGrid.updateImageURL({%=o.id%})" />
-					<button type="button" class="btn"><i class="icon icon-refresh"></i></button>
+					<?=__d('media', 'Width')?> x <?=__d('media', 'Height')?>:
+					<input type="text" class="form-control" id="media-w" value="{%=o.orig_w%}" onfocus="this.select()" onchange="mediaGrid.updateImageURL({%=o.id%})" /> x
+					<input type="text" class="form-control" id="media-h" value="{%=o.orig_h%}" onfocus="this.select()" onchange="mediaGrid.updateImageURL({%=o.id%})" />
+					<button type="button" class="btn" title="<?=__d('media', 'Refresh')?>"><i class="icon icon-refresh"></i></button>
+					<button type="button" class="btn" onclick="mediaGrid.rotate({%=o.id%}, 1)" title="<?=__d('media', 'Rotate left')?>" style="margin-left: 20px;"><i class="icon icon-action-undo"></i></button>
+					<button type="button" class="btn" onclick="mediaGrid.rotate({%=o.id%}, -1)" title="<?=__d('media', 'Rotate right')?>"><i class="icon icon-action-redo"></i></button>
 				</div>
 				<?=__d('media', 'Media URL')?>: <input type="text" class="form-control" id="media-url" value="" readonly="readonly" onfocus="this.select()" />
+
 				{% } %}
 			</script>
 			
@@ -100,11 +104,16 @@ $(function(){
 		move: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'move'))?>.json',
 		list: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'getList', $object_type, $object_id))?>.json',
 		delete: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'delete', $object_type, $object_id))?>/{$id}.json',
-		setMain: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'setMain', $object_type, $object_id))?>/{$id}.json'
+		setMain: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'setMain', $object_type, $object_id))?>/{$id}.json',
+		rotate: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'rotate', $object_type, $object_id))?>/{$id}.json'
 	};
 	mediaLocale = {
 		noFiles: '<?=__d('media', 'No media files found')?>',
-		noData: '<?=__d('media', 'No media data')?>'
+		noData: '<?=__d('media', 'No media data')?>',
+		continue: '<?=__d('media', 'Are your sure to continue?')?>',
+		msgWarnInvalid: '<?=__d('media', 'All links on this media will be invalid')?>',
+		msgSavedAsPng: '<?=__d('media', 'To preserve quality rotated image it will be saved as new PNG image')?>',
+		msgOrigRemoved: '<?=__d('media', 'Original image will be removed')?>',
 	}
 });
 </script>

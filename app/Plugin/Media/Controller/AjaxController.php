@@ -60,5 +60,9 @@ class AjaxController extends PAjaxController {
 		$this->Media->setMain($id, $object_type, $object_id);
 		$this->setResponse($this->Media->getList(compact('object_type', 'object_id')));
 	}
-	
+
+	public function rotate($object_type, $object_id, $id) {
+		$this->Media->rotate($id, $this->request->data('dir'));
+		$this->setResponse($this->Media->getList(compact('object_type', 'object_id')));
+	}
 }

@@ -53,11 +53,25 @@ MediaGrid = function(config) {
 	    }
 	    return null;
 	}
+
+	this.findBy = function(column_key, value) {
+		for(var i = 0; i < self.data.length; i++) {
+			if (self.getValue(column_key, self.data[i]) == value) {
+				return self.data[i];
+			}
+		}
+		return null;
+	}
 	
 	this.render = function() {
 		$('.media-thumbs', $self).html(self.renderThumbs());
 		if (self.data && self.data.length) {
-			self.showInfo(self.getID(self.data[0]));
+			var mainImg = self.findBy('Media.main', 1);
+			if (mainImg) {
+				self.showInfo(self.getID(mainImg));
+			} else {
+				self.showInfo(self.getID(self.data[0]));
+			}
 		} else {
 			$('.media-info', $self).html(mediaLocale.noData);
 		}
@@ -134,12 +148,14 @@ MediaGrid = function(config) {
 	}
 	
 	this.actionDelete = function(id) {
-		$.get(self.getActionURL(self.actions.delete, id), null, function(response) {
-			if (checkJson(response)) {
-	            mediaGrid.setData(response.data);
-	            mediaGrid.update();
-		    }
-		});
+		if (confirm([mediaLocale.msgWarnInvalid, mediaLocale.continue].join('\n'))) {
+			$.get(self.getActionURL(self.actions.delete, id), null, function (response) {
+				if (checkJson(response)) {
+					mediaGrid.setData(response.data);
+					mediaGrid.update();
+				}
+			});
+		}
 	}
 	
 	this.actionSetMain = function(id) {
@@ -149,6 +165,17 @@ MediaGrid = function(config) {
 	            mediaGrid.update();
 		    }
 		});
+	}
+
+	this.rotate = function(id, dir) {
+		if (confirm([mediaLocale.msgSavedAsPng, mediaLocale.msgOrigRemoved, mediaLocale.msgWarnInvalid, mediaLocale.continue].join('\n'))) {
+			$.post(self.getActionURL(self.actions.rotate, id), {dir: dir}, function (response) {
+				if (checkJson(response)) {
+					mediaGrid.setData(response.data);
+					mediaGrid.update();
+				}
+			});
+		}
 	}
 
 	self.init(config);

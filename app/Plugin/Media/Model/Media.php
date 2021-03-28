@@ -76,6 +76,27 @@ class Media extends AppModel {
     public function getPHMedia() {
     	return $this->PHMedia;
     }
+
+	/**
+	 * Create media folders if needed
+	 * @param $object_type
+	 * @param $id
+	 */
+	protected function _makeMediaFolders($object_type, $id) {
+		$path = $this->PHMedia->getTypePath($object_type);
+		if (!file_exists($path)) {
+			mkdir($path, self::MKDIR_MODE);
+		}
+		$path = $this->PHMedia->getPagePath($object_type, $id);
+		if (!file_exists($path)) {
+			mkdir($path, self::MKDIR_MODE);
+		}
+		$path = $this->PHMedia->getPath($object_type, $id);
+		if (!file_exists($path)) {
+			mkdir($path, self::MKDIR_MODE);
+		}
+		return $path;
+	}
     
     /**
      * Uploades media file into auto-created folder
@@ -91,21 +112,8 @@ class Media extends AppModel {
 		$id = $this->id;
 		
 		extract($data);
-		
-		// Create folders if not exists
-		$path = $this->PHMedia->getTypePath($object_type);
-		if (!file_exists($path)) {
-		    mkdir($path, self::MKDIR_MODE);
-		}
-		$path = $this->PHMedia->getPagePath($object_type, $id);
-		if (!file_exists($path)) {
-		    mkdir($path, self::MKDIR_MODE);
-		}
-		$path = $this->PHMedia->getPath($object_type, $id);
-		if (!file_exists($path)) {
-			mkdir($path, self::MKDIR_MODE);
-		}
-		
+		$path = $this->_makeMediaFolders($object_type, $id);
+
 		if (isset($real_name)) { // if image is simply relocated
 			copy($real_name, $path.$file.$ext);
 			$res = false;
@@ -215,15 +223,18 @@ class Media extends AppModel {
 
 	/**
 	 * Removes all temp cached images
-	 *
 	 * @param int $id
 	 */
 	public function cleanCache($id) {
-		App::uses('Path', 'Core.Vendor');
 		$media = $this->findById($id);
+		$this->_cleanCache($media);
+	}
+
+	protected function _cleanCache($media) {
+		App::uses('Path', 'Core.Vendor');
 		if (Hash::get($media, $this->alias.'.media_type') == 'image') {
-			$path = $this->PHMedia->getPath($media[$this->alias]['object_type'], $id);
-			
+			$path = $this->PHMedia->getPath($media[$this->alias]['object_type'], $media[$this->alias]['id']);
+
 			if (file_exists($path)) {
 				// remove all files in folder
 				$aPath = Path::dirContent($path);
@@ -238,4 +249,37 @@ class Media extends AppModel {
 		}
 	}
 
+	public function rotate($id, $dir) {
+		App::uses('Image', 'Media.Vendor');
+		$media = $this->findById($id);
+		$media = $media[$this->alias];
+		$img = new Image();
+		$file = $this->PHMedia->getFileName($media['object_type'], $id, null, $media['file'].$media['ext']);
+		$img->load($file);
+		imagealphablending($img->getImage(), true);
+		imagesavealpha($img->getImage(), true);
+
+		$angle = ($dir < 0) ? 360 + $dir * 90 : $dir * 90; // angle must be counterclockwise
+		$rotated = imagerotate($img->getImage(), $angle, imageColorAllocateAlpha($img->getImage(), 0, 0, 0, 127));
+		$img->setImage($rotated); // Rotated img is new image
+		imagealphablending($img->getImage(), true);
+		imagesavealpha($img->getImage(), true);
+
+		$media['ext'] = '.png'; 	// to save quality of image we have to save it as PNG
+		unset($media['id']); 		// to avoid browser cache issues save it as new image
+
+		// we need to update real media data of after rotation
+		$media['orig_w'] = $img->getSizeX();
+		$media['orig_h'] = $img->getSizeY();
+		$media['orig_fsize'] = filesize($file);
+		$this->save($media);
+
+		// use new ID: $this->id
+		$this->_makeMediaFolders($media['object_type'], $this->id);
+		$file = $this->PHMedia->getFileName($media['object_type'], $this->id, null, $media['file'].$media['ext']);
+		$img->outputPng($file);
+
+		// remove old file
+		$this->delete($id);
+	}
 }
