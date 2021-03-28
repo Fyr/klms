@@ -21,15 +21,17 @@
 
     $tabs = array(
         __('General') => $this->Html->div('form-body',
-            $this->PHForm->input('title')
+            $this->element('AdminUI/checkboxes', array('checkboxes' => array('published')))
+            .$this->PHForm->input('title')
             .$this->PHForm->input('slug')
             .$this->PHForm->input('sorting', array('class' => 'form-control input-small'))
         ),
-        __('Text') => $this->element('Article.edit_body', array('field' => 'body')),
+        //__('Text') => $this->element('Article.edit_body', array('field' => 'body')),
+        __('SEO') => $this->element('Seo.edit', array('object_type' => $objectType)),
     );
 
     if ($id) {
-        $tabs[__('Media')] = $this->element('Media.edit', array('object_type' => $objectType, 'object_id' => $id));
+        // $tabs[__('Media')] = $this->element('Media.edit', array('object_type' => $objectType, 'object_id' => $id));
     }
 
     echo $this->element('AdminUI/tabs', compact('tabs'));
