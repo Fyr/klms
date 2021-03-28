@@ -25,6 +25,7 @@
             .$this->PHForm->input('slug')
         ),
         __('Text') => $this->element('Article.edit_body', array('field' => 'body')),
+        __('SEO') => $this->element('Seo.edit', array('object_type' => $objectType)),
     );
 
     if ($id) {

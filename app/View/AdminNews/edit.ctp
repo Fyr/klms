@@ -28,12 +28,11 @@
             .$this->PHForm->input('title', array('label' => array('class' => 'col-md-3 control-label', 'text' => __('Title'))))
             .$this->PHForm->input('slug')
             .$this->PHForm->date('modified', array('label' => array('text' => __('Date'), 'class' => 'col-md-3 control-label')))
-            /*.$this->PHForm->input('teaser_'.$lang,
-                array('label' => array('class' => 'col-md-3 control-label', 'text' => __('Teaser')))
-            )*/
+            .$this->PHForm->input('teaser', array('label' => array('class' => 'col-md-3 control-label', 'text' => __('Teaser'))))
             //.$this->PHForm->input('sorting', array('class' => 'form-control input-small'))
         ),
         __('Text') => $this->element('Article.edit_body', array('field' => 'body')),
+        __('SEO') => $this->element('Seo.edit', array('object_type' => $objectType)),
     );
 
     if ($id) {

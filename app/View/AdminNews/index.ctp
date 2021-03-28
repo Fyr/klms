@@ -11,7 +11,7 @@
     $columns = $this->PHTableGrid->getDefaultColumns($objectType);
     $columns[$objectType.'.title']['label'] = __('Title');
     $columns['News.modified']['label'] = __('Date');
-    $columns['News.featured']['label'] = __('For home page');
+    $columns['News.featured']['label'] = __('Home page');
     $row_actions = '../AdminNews/_row_actions';
 ?>
 <div class="row">
