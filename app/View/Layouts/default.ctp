@@ -71,21 +71,32 @@
         </div>
     </div>
 <?
-    if ($currMenu === 'Home') {
+    if ($currMenu === 'Home' && $slider) {
 ?>
 
     <div id="owl-carousel" class="owl-carousel bigSlider">
-        <div class="item" style="background-image: url('/slides/slide1.jpg')">
+<?
+        foreach($slider['Slides'] as $i => $media) {
+            $src = $this->Media->imageUrl($media);
+            if ($i === 0) {
+?>
+        <div class="item" style="background-image: url('<?=$src?>')">
             <div class="wrapper">
                 <div class="back">
-                    <div class="title">Lifetime Excellence</div>
-                    <div class="description">From more than 50-years know-how, passion and care for the most demanding operators’ needs, we created this unique crane.</div>
+                    <div class="title"><?=$slider['Page']['title']?></div>
+                    <div class="description"><?=$this->ArticleVars->body($slider)?></div>
                     <a href="<?=$this->Html->url(array('controller' => 'pages', 'action' => 'view', 'about-us'))?>" class="btn btn-blue"><?=__('Read more...')?></a>
                 </div>
             </div>
         </div>
-        <div class="item" style="background-image: url('/slides/slide1.jpg')"></div>
-        <div class="item" style="background-image: url('/slides/slide1.jpg')"></div>
+<?
+            } else {
+?>
+        <div class="item" style="background-image: url('<?=$src?>')"></div>
+<?
+            }
+        }
+?>
     </div>
 
 <?

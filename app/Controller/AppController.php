@@ -105,6 +105,14 @@ class AppController extends Controller {
 		$this->set('currUser', $this->currUser);
 		$this->set('aNavBar', $this->aNavBar);
 		$this->set('currMenu', $this->currMenu);
+
+		// init slider - could be on every page or only on home
+		$this->Page = $this->loadModel('Page');
+		$this->Media = $this->loadModel('Media.Media');
+
+		$slider = $this->Page->findBySlug('slider');
+		$slider['Slides'] = $this->Media->findAllByObjectTypeAndObjectId($slider['Page']['object_type'], $slider['Page']['id']);
+		$this->set('slider', $slider);
 		// $this->set('aBottomLinks', $this->aBottomLinks);
 		// $this->set('currLink', $this->currLink);
 		$this->Brand = $this->loadModel('Brand');
