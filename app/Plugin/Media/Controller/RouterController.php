@@ -47,36 +47,38 @@ class RouterController extends AppController {
 		}
 
 		// накладываем водяной знак только для картинок с шириной > 400px и только для продуктов и событий
-		if (($type == 'product' && $image->getSizeX() > 200) || ($type == 'news' && $image->getSizeX() > 400)) {
+		if ($watermark = Configure::read('media.watermark')) {
+			if (($type == 'product' && $image->getSizeX() > 200) || ($type == 'news' && $image->getSizeX() > 400)) {
 
-			if ($image->getSizeX() > $image->getSizeY() && $image->getSizeX() > 1200) {
-				$image->resize(1200, null);
-			} else {
-				// TODO: resize also portrait image to fit screen
-			}
+				if ($image->getSizeX() > $image->getSizeY() && $image->getSizeX() > 1200) {
+					$image->resize(1200, null);
+				} else {
+					// TODO: resize also portrait image to fit screen
+				}
 
-			$logo = new Image();
-			$logo->load('./img/wlogo2.gif');
-			$logoY = $image->getSizeY() / 20; // при высоте картинки в 400px лого должно быть 20px
+				$logo = new Image();
+				$logo->load($watermark);
+				$logoY = $image->getSizeY() / 20; // при высоте картинки в 400px лого должно быть 20px
 
-			// лого должно быть не менее 20px и не более 40px по высоте
-			if ($logoY > 40) {
-				$logoY = 40;
-			} elseif ($logoY < 20) {
-				$logoY = 20;
-			}
-			$logoX = floor($logoY * $logo->getSizeX() / $logo->getSizeY());
-			$logo->resize($logoX, null);
+				// лого должно быть не менее 20px и не более 40px по высоте
+				if ($logoY > 40) {
+					$logoY = 40;
+				} elseif ($logoY < 20) {
+					$logoY = 20;
+				}
+				$logoX = floor($logoY * $logo->getSizeX() / $logo->getSizeY());
+				$logo->resize($logoX, null);
 
-			imagealphablending($image->getImage(), false);
-			imagesavealpha($image->getImage(), true);
-			for($x = 0; $x < $image->getSizeX(); $x+= $logo->getSizeX()) {
-				imagecopymerge($image->getImage(), $logo->getImage(),
-					$x, $image->getSizeY() - $logo->getSizeY() * 2,
-					0, 0,
-					min($logo->getSizeX(), $image->getSizeX() - $x), $logo->getSizeY(),
-					40
-				);
+				imagealphablending($image->getImage(), false);
+				imagesavealpha($image->getImage(), true);
+				for ($x = 0; $x < $image->getSizeX(); $x += $logo->getSizeX()) {
+					imagecopymerge($image->getImage(), $logo->getImage(),
+						$x, $image->getSizeY() - $logo->getSizeY() * 2,
+						0, 0,
+						min($logo->getSizeX(), $image->getSizeX() - $x), $logo->getSizeY(),
+						40
+					);
+				}
 			}
 		}
 

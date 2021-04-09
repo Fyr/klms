@@ -37,7 +37,8 @@ Configure::write('domain', array(
 	'title' => 'Kluytmans.loc'
 ));
 Configure::write('media', array(
-	'path' => WWW_ROOT.'files'.DS
+	'path' => WWW_ROOT.'files'.DS,
+	'watermark' => ''
 ));
 
 define('TEST_ENV', strpos($_SERVER['SERVER_NAME'], '.loc') > 0);
