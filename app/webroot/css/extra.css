@@ -1,0 +1,9 @@
+.pagination { font-size: 1.2em; text-align: center; font-family: 'LandRoverWeb-Bold'; color: #7d7d7d; margin-top:20px; }
+.pagination span a, .pagination .current { background: #cea900; display: inline-block; color: #fff; text-decoration: none; padding: 0 5px;}
+.pagination span a:hover, .pagination .current { background: #7d7d7d; }
+.pagination span.prev, .pagination span.next { color: #7d7d7d;}
+.pagination .prev { margin: 0 5px 0 15px; background: none; }
+.pagination .next { margin: 0 0 0 5px; background: none; }
+
+.pagination a.prev,  .pagination a.next { color: #cea900; text-decoration: underline; padding: 0; }
+.pagination a.prev:hover,  .pagination a.next:hover { background: none; text-decoration: none}

@@ -13,7 +13,7 @@
 		$this->Paginator->options(array('url' => $options));
 ?>
 <div class="pagination">
-	Страницы: <?=$this->Paginator->numbers(array('separator' => ' '))?>
+	<?=__('Pages')?>: <?=$this->Paginator->numbers(array('separator' => ' '))?>
 </div>
 <?
 	}
