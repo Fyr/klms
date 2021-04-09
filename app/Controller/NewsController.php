@@ -20,6 +20,7 @@ class NewsController extends AppController {
 	public function view($id) {
 		$article = $this->News->findById($id);
 		$this->set('article', $article);
+		$this->currMenu = 'News';
 	}
 }
 
