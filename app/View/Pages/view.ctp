@@ -1,7 +1,10 @@
-<div class="container article">
 <?
-    $this->ArticleVars->init($article, $url, $title, $teaser, $src, 'noresize');
+    $this->ArticleVars->init($article, $url, $title, $teaser, $src, '1200x');
 ?>
-    <h1><?=$title?></h1>
-    <?=$this->ArticleVars->body($article)?>
+<div class="welcomeSection">
+    <div class="wrapper">
+        <?=$this->element('title', compact('title'))?>
+        <br/><br/>
+        <?=$this->ArticleVars->body($article)?>
+    </div>
 </div>

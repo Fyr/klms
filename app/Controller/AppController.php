@@ -27,7 +27,7 @@ class AppController extends Controller {
 
 	protected function _afterInit() {
 		// after construct actions here
-		$this->loadModel('Settings');
+		$this->Settings = $this->loadModel('Settings');
 		$this->Settings->initData();
 	}
 
@@ -78,16 +78,17 @@ class AppController extends Controller {
 	public function beforeFilterLayout() {
 		$this->aNavBar = array(
 			'Home' => array('title' => __('Home'), 'url' => array('controller' => 'pages', 'action' => 'home')),
-			'About' => array('title' => __('About the Museum'), 'url' => array('controller' => 'pages', 'action' => 'about', 'museum')),
 			'News' => array('title' => __('News'), 'url' => array('controller' => 'news', 'action' => 'index')),
-			'Products' => array('title' => __('Collections'), 'url' => array('controller' => 'products', 'action' => 'categories')),
-			'History' => array('title' => __('History of police'), 'url' => array('controller' => 'pages', 'action' => 'history', 'history-pdf')),
-			'Contacts' => array('title' => __('Visitors'), 'url' => array('controller' => 'pages', 'action' => 'view', 'contacts')),
+			'Products' => array('title' => __('Products'), 'url' => array('controller' => 'products', 'action' => 'index')),
+			'Brands' => array('title' => __('Brands'), 'url' => array('controller' => 'brands', 'action' => 'index')),
+			'About-us' => array('title' => __('About us'), 'url' => array('controller' => 'pages', 'action' => 'view', 'about-us')),
+			'Dealers' => array('title' => __('Dealers'), 'url' => array('controller' => 'pages', 'action' => 'view', 'dealers')),
+			'Contacts' => array('title' => __('Contacts'), 'url' => array('controller' => 'pages', 'action' => 'view', 'contacts')),
 		);
 		$this->currMenu = $this->_getCurrMenu();
 		// $this->aBottomLinks = $this->aNavBar;
 		// $this->currLink = $this->_currMenu;
-		$this->Auth->allow(array('home', 'view', 'index', 'login', 'categories', 'about', 'history'));
+		$this->Auth->allow(array('home', 'view', 'index', 'login'));
 		$this->currUser = array();
 		$this->cart = array();
 		if ($this->Auth->loggedIn()) {
@@ -106,6 +107,9 @@ class AppController extends Controller {
 		$this->set('currMenu', $this->currMenu);
 		// $this->set('aBottomLinks', $this->aBottomLinks);
 		// $this->set('currLink', $this->currLink);
+		$this->Brand = $this->loadModel('Brand');
+		$aPartners = $this->Brand->findAllByPublishedAndFeatured(1, 1);
+		$this->set('aPartners', $aPartners);
 	}
 
 	protected function _refreshUser($lForce = false) {
@@ -115,7 +119,6 @@ class AppController extends Controller {
 			$this->Auth->login($user['User']);
 		}
 
-		$this->loadModel('Product');
 		$this->currUser = AuthComponent::user();
 	}
 }
