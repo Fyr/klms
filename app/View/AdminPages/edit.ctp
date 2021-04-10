@@ -18,11 +18,14 @@
 <?
     echo $this->element('AdminUI/form_title', array('title' => $this->ObjectType->getTitle($id ? 'edit' : 'create', $objectType)));
     echo $this->PHForm->create($objectType);
-
+    $options = array();
+    if ($this->request->data($objectType.'.featured')) {
+        $options['readonly'] = true;
+    }
     $tabs = array(
         __('General') => $this->Html->div('form-body',
             $this->PHForm->input('title', array('label' => array('class' => 'col-md-3 control-label', 'text' => __('Title'))))
-            .$this->PHForm->input('slug')
+            .$this->PHForm->input('slug', $options)
         ),
         __('Text') => $this->element('Article.edit_body', array('field' => 'body')),
         __('SEO') => $this->element('Seo.edit', array('object_type' => $objectType)),
