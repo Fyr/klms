@@ -65,5 +65,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
        
     });
+
+    $('article img').each(function (i, e) {
+        console.log(i, e, e.style.float);
+        if (e.style.float === 'left') {
+            $(e).addClass('align-left');
+        }
+    });
     
 });

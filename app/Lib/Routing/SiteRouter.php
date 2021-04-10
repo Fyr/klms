@@ -6,7 +6,7 @@ class SiteRouter extends Router {
 		list($objectType) = array_keys($article);
 		return $objectType;
 	}
-	
+
 	static public function url($article) {
 		$objectType = self::getObjectType($article);
 		if ($objectType == 'Product') {
@@ -21,6 +21,12 @@ class SiteRouter extends Router {
 				'controller' => 'news',
 				'action' => 'view',
 				$article['News']['id']
+			);
+		} elseif ($objectType == 'Brand') {
+			$url = array(
+				'controller' => 'brands',
+				'action' => 'view',
+				$article['Brand']['id']
 			);
 		} elseif ($objectType == 'Category') {
 			$url = array(

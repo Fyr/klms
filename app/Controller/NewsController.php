@@ -11,7 +11,7 @@ class NewsController extends AppController {
 			'News' => array(
 				'conditions' => array('published' => 1),
 				'order' => array('modified' => 'desc'),
-				'limit' => 9
+				'limit' => 6
 			)
 		);
 		$this->set('aArticles', $this->paginate('News'));

@@ -1,6 +1,6 @@
 <div class="newsSection">
     <div class="wrapper">
-        <?=$this->element('title', array('title' => __('News')))?>
+        <?=$this->element('title', array('title' => __('Brands')))?>
         <?=$this->element('paginate')?>
         <ul class="news">
 <?

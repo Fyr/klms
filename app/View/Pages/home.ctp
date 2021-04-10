@@ -219,7 +219,7 @@
                 <a href="<?=$url?>" class="picture" style="background-image: url(<?=$src?>);"></a>
                 <div class="title"><?=$title?></div>
                 <div class="description"><?=$teaser?></div>
-                <a href="<?=$url?>" class="more"><?=__('more')?></a>
+                <a href="<?=$url?>" class="more"><?=__('Read more...')?></a>
             </li>
 
 <?
