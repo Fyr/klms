@@ -31,7 +31,7 @@
 </head>
 <body>
     <div class="header">
-        <a href="#"><img src="/img/logo.png" alt="" /></a>
+        <a href="/"><img src="/img/logo.png" alt="<?=Configure::read('domain.title')?>" /></a>
         <div class="phone"><?=Configure::read('Settings.phone')?></div>
         <ul class="menu">
 <?
@@ -109,9 +109,9 @@
         <div id="owl-carousel-partners" class="partners">
 <?
     foreach($aPartners as $article) {
-        $src = $this->Media->imageUrl($article, '200x');
+        $this->ArticleVars->init($article, $url, $title, $teaser, $src, '200x');
 ?>
-            <div class="item" style="background-image: url('<?=$src?>')"></div>
+            <a class="item" href="<?=$url?>" title="<?=$title?>" style="background-image: url('<?=$src?>');"></a>
 
 <?
     }

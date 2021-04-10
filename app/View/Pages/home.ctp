@@ -19,7 +19,7 @@
             <img src="<?=$src?>" class="right" alt="" />
             <h3><?=Hash::get($aPages, 'home-text2.Page.title')?></h3>
             <?=$this->ArticleVars->body($aPages['home-text2'])?>
-            <a href="<?=$this->Html->url(array('controller' => 'pages', 'action' => 'view', 'about-us'))?>" class="btn"><?=__('Read more...')?></a>
+            <a href="<?=$this->Html->url(array('controller' => 'pages', 'action' => 'view', 'contacts'))?>" class="btn"><?=__('Read more...')?></a>
         </div>
     </div>
 </div>

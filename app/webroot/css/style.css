@@ -754,8 +754,10 @@ label.checkbox {
 }
 
 .newsSection .news .more:hover:before {
+    /*
     left:0;
     right: 0;
+    */
 }
 
 .recentProductsSection {
