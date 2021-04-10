@@ -32,6 +32,15 @@ document.addEventListener("DOMContentLoaded", function () {
     $('.menu li a').click(function(){
         $('.header .menu li ul').stop().slideUp();
         if ( $(this).next().is('ul') ) {
+            this.classList.toggle('down');
+            $(this).next('ul').stop().slideToggle();
+        }
+    });
+
+    $('.menuMobile > li > a').click(function(){
+        $('.menuMobile li ul').stop().slideUp();
+        if ( $(this).next().is('ul') ) {
+            this.classList.toggle('down');
             $(this).next('ul').stop().slideToggle();
         }
     });
@@ -40,14 +49,15 @@ document.addEventListener("DOMContentLoaded", function () {
     $(document).on('click touchstart', function(e) {
 			
         if (!$.contains($(".header .menu").get(0), e.target)  ) {
-            $(".header li ul").stop().slideUp();
+            $(".header .menu > li > ul").stop().slideUp();
         }
-        // if (!$.contains($(".header .menuMobile").get(0), e.target)  ) {
-        //     $(".header .menuMobile li ul").stop().slideUp();
-        // }
+
+        if (!$.contains($(".header .menuMobile").get(0), e.target)  ) {
+            $(".header .menuMobile > li > ul").stop().slideUp();
+        }
     });
 
-    $('input, select').styler();
+    $('input.styler, select').styler();
 
 
     $('.searchText').click(function(){

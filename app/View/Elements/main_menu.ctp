@@ -1,9 +1,9 @@
-<ul class="<?=(isset($class)) ? $class : 'mainMenu'?>">
+<ul class="<?=(isset($class)) ? $class : 'menu'?>">
 <?
     foreach($aNavBar as $curr => $item) {
         $active = ($curr == $currMenu) ? 'class="active"' : '';
 ?>
-    <li <?=$active?>><?=$this->Html->link($item['title'], $item['url'])?></li>
+    <li <?=$active?>><?=$this->Html->link(__($item['title']), $item['url'])?></li>
 <?
     }
 ?>

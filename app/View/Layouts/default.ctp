@@ -31,6 +31,28 @@
 </head>
 <body>
     <div class="header">
+
+        <div class="hamburger-menu">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+                <span></span>
+                <div class="textMenu">menu</div>
+            </label>
+
+            <?=$this->element('main_menu', array('class' => 'menuMobile'))?>
+        </div>
+
+        <a href="/"><img src="/img/logo.png" class="logo" alt="<?=Configure::read('domain.title')?>" /></a>
+        <div class="phone"><?=Configure::read('Settings.phone')?></div>
+        <?=$this->element('main_menu')?>
+
+        <a href="tel:<?=str_replace(' ', '', Configure::read('Settings.phone'))?>" class="icon phoneIcon"></a>
+    </div>
+
+<?
+/*
+?>
+    <div class="header">
         <a href="/"><img src="/img/logo.png" alt="<?=Configure::read('domain.title')?>" /></a>
         <div class="phone"><?=Configure::read('Settings.phone')?></div>
         <ul class="menu">
@@ -43,34 +65,10 @@
 <?
     }
 ?>
-        <!--li>
-          <a href="javascript: void(0)"><?=__('Products')?></a>
-          <ul style="display: none;">
-            <li><a href="#">Landbouw</a></li>
-            <li><a href="#">Liften</a></li>
-            <li><a href="#">tuin & park</a></li>
-            <li><a href="#">Reiniging</a></li>
-            <li><a href="#">Hoogwerkers</a></li>
-            <li><a href="#">Kranen</a></li>
-          </ul>
-        </li>
-        <li><a href="#"><span><?=__('Contacts')?></span></a></li-->
         </ul>
 
-    <div class="search">
-        <div class="searchText">zoeken</div>
-            <div class="searchBoxOuter">
-                <div class="searchBox">
-                    <div class="inputBox withSearch">
-                      <input type="text" class="styler" />
-                    </div>
-                    <input type="submit" value="search" class="btn1" />
-                    <div class="icon close"></div>
-                </div>
-            </div>
-        </div>
-    </div>
 <?
+*/
     if ($currMenu === 'Home' && $slider) {
 ?>
 
@@ -118,27 +116,19 @@
 ?>
         </div>
     </div>
+
     <div class="footer">
         <div class="wrapper">
             <div class="inner">
                 <div>
-                    <img src="/img/logo-footer.png" alt="" />
+                    <?=$this->element('main_menu', array('class' => 'bottomMenu'))?>
+                    <div class="copyright">2012 &copy; KLUYTMANS</div>
+                </div>
+                <div class="bottomContent">
+                    <a href="/"><img class="bottomLogo" src="/img/logo-footer.png" alt="<?=Configure::read('domain.title')?>" /></a>
                     <div class="address"><?=Configure::read('Settings.address')?></div>
                     <div class="phone"><?=Configure::read('Settings.phone')?></div>
-                </div>
-                <div>
-                    <ul class="bottomMenu">
-<?
-    foreach($aNavBar as $menu => $item) {
-        $class = ($menu === $currMenu) ? 'active' : '';
-?>
-                        <li class="<?=$class?>"><a href="<?=$this->Html->url($item['url'])?>"><?=__($item['title'])?></a></li>
-
-<?
-    }
-?>
-                    </ul>
-                    <div class="copyright">2012 &copy; KLUYTMANS</div>
+                    <div class="copyright1">2012 &copy; KLUYTMANS</div>
                 </div>
             </div>
         </div>
