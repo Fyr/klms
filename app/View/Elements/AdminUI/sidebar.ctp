@@ -53,11 +53,11 @@
 			array('label' => __('Pages'), 'url' => array('controller' => 'AdminPages', 'action' => 'index')),
 			array('label' => __('News'), 'url' => array('controller' => 'AdminNews', 'action' => 'index')),
 		)),
-		array('label' => __('Products'), 'icon' => 'icon-docs', 'url' => '', 'submenu' => array(
+		array('label' => __('Catalog'), 'icon' => 'icon-docs', 'url' => '', 'submenu' => array(
 			array('label' => __('Brands'), 'url' => array('controller' => 'AdminBrands', 'action' => 'index')),
 			array('label' => __('Categories'), 'url' => array('controller' => 'AdminCategories', 'action' => 'index')),
 			array('label' => __('Tags'), 'url' => array('controller' => 'AdminTags', 'action' => 'index')),
-			// array('label' => __('Museum items'), 'url' => array('controller' => 'AdminProducts', 'action' => 'index', 'page' => 1, 'limit' => 20)),
+			// array('label' => __('Products'), 'url' => array('controller' => 'AdminProducts', 'action' => 'index')),
 		)),
 			/*
 		array('label' => __('Background tasks'), 'icon' => 'icon-paper-plane', 'url' => '', 'submenu' => array(
@@ -155,10 +155,9 @@
 <script>
 	$(function(){
 		var $currMenu = $('#menu<?=$currMenu?>');
-		$currMenu.addClass('active');
-		$currMenu.addClass('open');
-		$currMenu.parent().closest('li').addClass('active');
-		$currMenu.parent().closest('li').addClass('open');
+		$currMenu.addClass('active').addClass('open');
+		$currMenu.parent().closest('li').addClass('active').addClass('open');
+		$currMenu.parent().closest('li').find('span.arrow').addClass('open');
 	});
 </script>
 <?
