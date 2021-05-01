@@ -1200,6 +1200,7 @@ label.checkbox {
 
     .footer .bottomMenu { margin:0; display: block; text-align: center; }
     .footer .copyright { display: none; }
+    .footer .bottomMenu > li { margin-left: 0; margin-right: 0; }
 
     .footer .bottomContent { text-align: center; margin-top: 30px; }
     .footer .bottomLogo { width: 216px; }
