@@ -103,14 +103,13 @@
 
     <?=$this->fetch('content')?>
     <div class="partnersSection">
-        <h2><?=__('Our Partners')?></h2>
+        <h2 class="mb"><?=__('Our Partners')?></h2>
         <div id="owl-carousel-partners" class="partners">
 <?
     foreach($aPartners as $article) {
         $this->ArticleVars->init($article, $url, $title, $teaser, $src, '200x');
 ?>
             <a class="item" href="<?=$url?>" title="<?=$title?>" style="background-image: url('<?=$src?>');"></a>
-
 <?
     }
 ?>
@@ -133,5 +132,6 @@
             </div>
         </div>
     </div>
+    <? //echo $this->element('sql_dump');?>
 </body>
 </html>

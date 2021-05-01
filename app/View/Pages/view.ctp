@@ -4,7 +4,6 @@
 <div class="welcomeSection">
     <div class="wrapper">
         <?=$this->element('title', compact('title'))?>
-        <br/><br/>
         <?=$this->ArticleVars->body($article)?>
     </div>
 </div>

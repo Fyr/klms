@@ -91,9 +91,6 @@ class AppController extends Controller {
 		$this->Auth->allow(array('home', 'view', 'index', 'login'));
 		$this->currUser = array();
 		$this->cart = array();
-		if ($this->Auth->loggedIn()) {
-			$this->_refreshUser();
-		}
 	}
 
 	public function beforeRender() {

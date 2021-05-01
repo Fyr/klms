@@ -14,7 +14,6 @@ class ArticleVarsHelper extends AppHelper {
 		$teaser = nl2br($article[$objectType]['teaser']);
 
 		$src = $this->Media->imageUrl($article, $size);
-		$featured = $article[$objectType]['featured'];
 	}
 
 	public function body($article) {

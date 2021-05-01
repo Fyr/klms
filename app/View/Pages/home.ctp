@@ -67,102 +67,37 @@
 </div>
 <div class="categorySection">
     <div class="wrapper">
-        <h2>Categories with main photo of category (uploaded)</h2>
+        <h2><?=__('Categories')?></h2>
         <ul class="categories">
-            <li style="background-image: url('/temporary/category1.jpg')">
+<?
+    foreach($aCategories as $category) {
+        $this->ArticleVars->init($category, $url, $title, $teaser, $src, '800x', $cat_id);
+
+?>
+            <li style="background-image: url('<?=$src?>')">
                 <div class="description">
-                    <div class="title">Landbouw</div>
+                    <div class="title"><?=$title?></div>
                     <div class="links">
-                        <div><a href="#">Gebruikte hoogwerkers</a></div>
-                        <div><a href="#">Traccess rupshoogwerkers</a></div>
-                        <div><a href="#">ZED gearticuleerde hoogwerkers</a></div>
-                        <div><a href="#">B-lift Telescoop hoogwerkers</a></div>
+<?
+        foreach($aSubcategories[$cat_id] as $subcategory) {
+?>
+                        <div><a href="<?=SiteRouter::url($subcategory)?>"><?=$subcategory['Subcategory']['title']?></a></div>
+<?
+        }
+?>
                     </div>
                 </div>
             </li>
-            <li style="background-image: url('/temporary/category2.jpg')">
-                <div class="description">
-                    <div class="title">Liften</div>
-                    <div class="links">
-                        <div><a href="#">Gebruikte hoogwerkers</a></div>
-                        <div><a href="#">Traccess rupshoogwerkers</a></div>
-                        <div><a href="#">ZED gearticuleerde hoogwerkers</a></div>
-                        <div><a href="#">B-lift Telescoop hoogwerkers</a></div>
-                    </div>
-                </div>
-            </li>
-            <li style="background-image: url('/temporary/category3.jpg')">
-                <div class="description">
-                    <div class="title">Hoogwerkers</div>
-                    <div class="links">
-                        <div><a href="#">Gebruikte hoogwerkers</a></div>
-                        <div><a href="#">Traccess rupshoogwerkers</a></div>
-                        <div><a href="#">ZED gearticuleerde hoogwerkers</a></div>
-                        <div><a href="#">B-lift Telescoop hoogwerkers</a></div>
-                    </div>
-                </div>
-            </li>
-            <li style="background-image: url('/temporary/category4.jpg')">
-                <div class="description">
-                    <div class="title">Tuin & Park</div>
-                    <div class="links">
-                        <div><a href="#">Gebruikte hoogwerkers</a></div>
-                        <div><a href="#">Traccess rupshoogwerkers</a></div>
-                        <div><a href="#">ZED gearticuleerde hoogwerkers</a></div>
-                        <div><a href="#">B-lift Telescoop hoogwerkers</a></div>
-                    </div>
-                </div>
-            </li>
-            <li style="background-image: url('/temporary/category5.jpg')">
-                <div class="description">
-                    <div class="title">Reiniging</div>
-                    <div class="links">
-                        <div><a href="#">Gebruikte hoogwerkers</a></div>
-                        <div><a href="#">Traccess rupshoogwerkers</a></div>
-                        <div><a href="#">ZED gearticuleerde hoogwerkers</a></div>
-                        <div><a href="#">B-lift Telescoop hoogwerkers</a></div>
-                    </div>
-                </div>
-            </li>
-            <li style="background-image: url('/temporary/category6.jpg')">
-                <div class="description">
-                    <div class="title">Kranen</div>
-                    <div class="links">
-                        <div><a href="#">Gebruikte hoogwerkers</a></div>
-                        <div><a href="#">Traccess rupshoogwerkers</a></div>
-                        <div><a href="#">ZED gearticuleerde hoogwerkers</a></div>
-                        <div><a href="#">B-lift Telescoop hoogwerkers</a></div>
-                    </div>
-                </div>
-            </li>
-            <li style="background-image: url('/temporary/category7.jpg')">
-                <div class="description">
-                    <div class="title">Landbouw</div>
-                    <div class="links">
-                        <div><a href="#">Gebruikte hoogwerkers</a></div>
-                        <div><a href="#">Traccess rupshoogwerkers</a></div>
-                        <div><a href="#">ZED gearticuleerde hoogwerkers</a></div>
-                        <div><a href="#">B-lift Telescoop hoogwerkers</a></div>
-                    </div>
-                </div>
-            </li>
-            <li style="background-image: url('/temporary/category8.jpg')">
-                <div class="description">
-                    <div class="title">Kranen</div>
-                    <div class="links">
-                        <div><a href="#">Gebruikte hoogwerkers</a></div>
-                        <div><a href="#">Traccess rupshoogwerkers</a></div>
-                        <div><a href="#">ZED gearticuleerde hoogwerkers</a></div>
-                        <div><a href="#">B-lift Telescoop hoogwerkers</a></div>
-                    </div>
-                </div>
-            </li>
+
+<?
+    }
+?>
         </ul>
     </div>
 </div>
 <div class="searchSection">
     <div class="wrapper">
-        <h2>Zoek Producten</h2>
+        <h2 class="mb">Zoek Producten</h2>
         <div class="formElements">
             <div>
                 <span class="name first">Type: </span>
@@ -209,7 +144,7 @@
 </div>
 <div class="newsSection">
     <div class="wrapper">
-        <?=$this->element('title', array('title' => __('Hot news')))?>
+        <h2><?=__('Hot news')?></h2>
         <ul class="news">
 <?
     foreach($aNews as $article) {
