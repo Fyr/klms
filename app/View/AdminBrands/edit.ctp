@@ -1,6 +1,6 @@
 <?
     $id = $this->request->data($objectType.'.id');
-    $title = __('Products');
+    $title = __('Catalog');
     $breadcrumbs = array(
         $title => 'javascript:;',
         $this->ObjectType->getTitle('index', $objectType) => array('action' => 'index'),

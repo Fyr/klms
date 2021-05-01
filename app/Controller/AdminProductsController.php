@@ -13,7 +13,7 @@ class AdminProductsController extends AdminContentController {
 
     public $paginate = array(
         'conditions' => array(),
-        'fields' => array('created', 'cat_id', 'subcat_id', 'title', 'brand_id'),
+        'fields' => array('created', 'cat_id', 'subcat_id', 'brand_id', 'title'),
         'recursive' => 2,
         'order' => array('sorting' => 'desc'),
         'limit' => 20

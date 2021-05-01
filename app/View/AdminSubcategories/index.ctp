@@ -1,5 +1,5 @@
 <?
-    $title = __('Products');
+    $title = __('Catalog');
     $catTitle = Hash::get($parentArticle, 'Category.title');
     $subTitle = $this->ObjectType->getTitle('index', $objectType);
     $breadcrumbs = array(
@@ -11,19 +11,6 @@
     echo $this->element('AdminUI/breadcrumbs', compact('breadcrumbs'));
     echo $this->element('AdminUI/title', compact('title'));
     echo $this->Flash->render();
-
-/*
-    $title = $this->ObjectType->getTitle('index', $objectType);
-    $breadcrumbs = array(
-        __('Collections') => 'javascript:;',
-        $this->ObjectType->getTitle('index', 'Category') => array('controller' => 'AdminCategories', 'action' => 'index'),
-        Hash::get($parentArticle, 'Category.title') => array('controller' => 'AdminCategories', 'action' => 'edit', Hash::get($parentArticle, 'Category.id')),
-        $title => ''
-    );
-    echo $this->element('AdminUI/breadcrumbs', compact('breadcrumbs'));
-    echo $this->element('AdminUI/title', array('title' => __('Collections')));
-    echo $this->Flash->render();
-*/
 ?>
 <div class="row">
     <div class="col-md-12">

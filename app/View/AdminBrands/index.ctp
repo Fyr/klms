@@ -1,5 +1,5 @@
 <?
-    $title = __('Products');
+    $title = __('Catalog');
     $breadcrumbs = array(
         $title => 'javascript:;',
         $this->ObjectType->getTitle('index', $objectType) => ''

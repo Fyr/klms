@@ -1,6 +1,6 @@
 <?
     $id = $this->request->data($objectType.'.id');
-    $title = __('Products');
+    $title = __('Catalog');
     $catTitle = Hash::get($parentArticle, 'Category.title');
     $subTitle = $this->ObjectType->getTitle('index', $objectType);
     $indexURL = array('controller' => 'AdminSubcategories', 'action' => 'index', Hash::get($parentArticle, 'Category.id'));
@@ -14,13 +14,11 @@
     echo $this->element('AdminUI/breadcrumbs', compact('breadcrumbs'));
     echo $this->element('AdminUI/title', compact('title'));
     echo $this->Flash->render();
-
 ?>
 
 <div class="row">
     <div class="col-md-12">
         <div class="portlet light bordered">
-
 <?
     echo $this->element('AdminUI/form_title', array('title' => $this->ObjectType->getTitle($id ? 'edit' : 'create', $objectType)));
     echo $this->PHForm->create($objectType);

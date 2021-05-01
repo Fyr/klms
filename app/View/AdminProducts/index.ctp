@@ -1,5 +1,5 @@
 <?
-    $title = __('Products');
+    $title = __('Catalog');
     $breadcrumbs = array(
         $title => 'javascript:;',
         $this->ObjectType->getTitle('index', $objectType) => ''
@@ -39,10 +39,6 @@
     .table.dataTable > tbody > tr > td:first-child {
         text-align: center;
     }
-    .highlight {
-        color: #900;
-        font-weight: bold;
-    }
 </style>
 <div class="row">
     <div class="col-md-12">
@@ -52,50 +48,11 @@
                 <div class="table-toolbar">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form-inline" action="" role="form" method="get">
-                                <div class="form-group">
-                                    <?=__('Search item')?>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control input-xlarge" placeholder="<?=__('by item name...')?>" name="title" value="<?=Hash::get($filter, 'title')?>">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control input-medium" placeholder="<?=__('by item location...')?>" name="location" value="<?=Hash::get($filter, 'location')?>">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control input-medium" placeholder="<?=__('by number...')?>" name="id_num" value="<?=Hash::get($filter, 'id_num')?>">
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn btn-info">
-                                        <i class="fa fa-search"></i> <?=__('Find')?>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <hr/>
-                    <div class="row">
-                        <div class="col-md-12">
                             <div class="btn-group">
                                 <a class="btn green" href="<?=$this->Html->url(array('action' => 'edit', 0))?>">
                                     <i class="fa fa-plus"></i> <?=$this->ObjectType->getTitle('create', $objectType)?>
                                 </a>
                             </div>
-                            <form action="" class="form-inline pull-right" role="form" method="get">
-                                <div class="form-group">
-                                    <?=__('Show by')?>
-                                </div>
-                                <div class="form-group">
-<?
-    echo $this->PHForm->input('limit', array('class' => 'form-control', 'options' => $limitOptions, 'label' => false,
-        'value' => Hash::get($filter, 'limit'), 'autocomplete' => 'off'
-    ));
-?>
-                                </div>
-                                <div class="form-group">
-                                    <?=__('records')?>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -104,19 +61,3 @@
         </div>
     </div>
 </div>
-<script>
-$(function(){
-    $('#limit').change(function(){
-        var url = window.location.href;
-        if (url.indexOf('limit:') > 0) {
-            url = url.replace(/limit\:\d+/, 'limit:' + $(this).val());
-        } else {
-            if (url.indexOf('index') == -1) {
-                url+= '/index';
-            }
-            url+= '/limit:' + $(this).val();
-        }
-        window.location.href = url;
-    });
-});
-</script>
