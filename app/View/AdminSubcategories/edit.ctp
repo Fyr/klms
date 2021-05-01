@@ -1,17 +1,20 @@
 <?
     $id = $this->request->data($objectType.'.id');
-    $title = $this->ObjectType->getTitle('index', $objectType);
-    $indexURL = array('controller' => 'AdminSubcategories', 'action' => 'index', $parent_id);
+    $title = __('Products');
+    $catTitle = Hash::get($parentArticle, 'Category.title');
+    $subTitle = $this->ObjectType->getTitle('index', $objectType);
+    $indexURL = array('controller' => 'AdminSubcategories', 'action' => 'index', Hash::get($parentArticle, 'Category.id'));
     $breadcrumbs = array(
-        __('Collections') => 'javascript:;',
+        $title => 'javascript:;',
         $this->ObjectType->getTitle('index', 'Category') => array('controller' => 'AdminCategories', 'action' => 'index'),
-        Hash::get($parentArticle, 'Category.title') => array('controller' => 'AdminCategories', 'action' => 'edit', Hash::get($parentArticle, 'Category.id')),
-        $this->ObjectType->getTitle('index', 'Subcategory') => $indexURL,
+        $catTitle => $indexURL,
+        $subTitle => $indexURL,
         __('Edit') => ''
     );
     echo $this->element('AdminUI/breadcrumbs', compact('breadcrumbs'));
-    echo $this->element('AdminUI/title', array('title' => __('Collections')));
+    echo $this->element('AdminUI/title', compact('title'));
     echo $this->Flash->render();
+
 ?>
 
 <div class="row">
@@ -26,16 +29,10 @@
         __('General') => $this->Html->div('form-body',
             $this->element('AdminUI/checkboxes', array('checkboxes' => array('published')))
             .$this->PHForm->input('title')
-            .$this->PHForm->input('slug')
             .$this->PHForm->input('sorting', array('class' => 'form-control input-small'))
         ),
-        // __('Text') => $this->element('Article.edit_body', array('field' => 'body')),
         __('SEO') => $this->element('Seo.edit', array('object_type' => $objectType)),
     );
-
-    if ($id) {
-        // $tabs[__('Media')] = $this->element('Media.edit', array('object_type' => $objectType, 'object_id' => $id));
-    }
 
     echo $this->element('AdminUI/tabs', compact('tabs'));
     echo $this->element('AdminUI/form_actions', array('backURL' => $indexURL));

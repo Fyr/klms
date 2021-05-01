@@ -8,7 +8,7 @@ class AdminBrandsController extends AdminContentController {
 
     public $paginate = array(
         'conditions' => array(),
-        'fields' => array('created', 'title', 'slug', 'published', 'featured', 'Media.*'),
+        'fields' => array('created', 'title', 'published', 'featured', 'Media.*'),
         'limit' => 10
     );
 }

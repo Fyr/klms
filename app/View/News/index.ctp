@@ -7,12 +7,12 @@
     foreach($aArticles as $article) {
         $this->ArticleVars->init($article, $url, $title, $teaser, $src, '800x');
 ?>
-                <li>
-                    <a href="<?=$url?>" class="picture" style="background-image: url(<?=$src?>);"></a>
-                    <div class="title"><?=$title?></div>
-                    <div class="description"><?=$teaser?></div>
-                    <a href="<?=$url?>" class="more"><?=__('Read more...')?></a>
-                </li>
+            <li>
+                <a href="<?=$url?>" class="picture" style="background-image: url(<?=$src?>);"></a>
+                <div class="title"><?=$title?></div>
+                <div class="description"><?=$teaser?></div>
+                <a href="<?=$url?>" class="more"><?=__('Read more...')?></a>
+            </li>
 
 <?
     }

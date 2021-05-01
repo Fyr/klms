@@ -1,4 +1,18 @@
 <?
+    $title = __('Products');
+    $catTitle = Hash::get($parentArticle, 'Category.title');
+    $subTitle = $this->ObjectType->getTitle('index', $objectType);
+    $breadcrumbs = array(
+        $title => 'javascript:;',
+        $this->ObjectType->getTitle('index', 'Category') => array('controller' => 'AdminCategories', 'action' => 'index'),
+        $catTitle => array('controller' => 'AdminSubcategories', 'action' => 'index', Hash::get($parentArticle, 'Category.id')),
+        $subTitle => ''
+    );
+    echo $this->element('AdminUI/breadcrumbs', compact('breadcrumbs'));
+    echo $this->element('AdminUI/title', compact('title'));
+    echo $this->Flash->render();
+
+/*
     $title = $this->ObjectType->getTitle('index', $objectType);
     $breadcrumbs = array(
         __('Collections') => 'javascript:;',
@@ -9,11 +23,12 @@
     echo $this->element('AdminUI/breadcrumbs', compact('breadcrumbs'));
     echo $this->element('AdminUI/title', array('title' => __('Collections')));
     echo $this->Flash->render();
+*/
 ?>
 <div class="row">
     <div class="col-md-12">
         <div class="portlet light bordered">
-            <?=$this->element('AdminUI/form_title', array('title' => Hash::get($parentArticle, 'Category.title').': '.$title))?>
+            <?=$this->element('AdminUI/form_title', array('title' => $catTitle.': '.$subTitle))?>
             <div class="portlet-body dataTables_wrapper">
                 <div class="table-toolbar">
                     <div class="row">

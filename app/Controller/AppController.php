@@ -119,7 +119,7 @@ class AppController extends Controller {
 		$aPartners = $this->Brand->findAllByPublishedAndFeatured(1, 1);
 		$this->set('aPartners', $aPartners);
 	}
-
+/*
 	protected function _refreshUser($lForce = false) {
 		if ($lForce) {
 			$this->loadModel('User');
@@ -129,4 +129,5 @@ class AppController extends Controller {
 
 		$this->currUser = AuthComponent::user();
 	}
+*/
 }
