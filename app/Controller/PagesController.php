@@ -18,21 +18,17 @@ class PagesController extends AppController {
 		// hot news
 		$conditions = array('published' => 1, 'featured' => 1);
 		$order = array('modified' => 'desc');
-		$limit = 3;
-		$aNews = $this->News->find('all', compact('conditions', 'order', 'limit'));
+		$aNews = $this->News->find('all', compact('conditions', 'order'));
 
 		$aCategories = $this->Category->findAllByPublished(1, null, array('Category.sorting' => 'ASC'));
 		$aSubcategories = $this->Subcategory->findAllByPublished(1, null, array('Subcategory.sorting' => 'ASC'));
 		$aSubcategories = Hash::combine($aSubcategories, '{n}.Subcategory.id', '{n}', '{n}.Subcategory.parent_id');
-		$this->set(compact('aPages', 'aNews', 'aCategories', 'aSubcategories'));
 
-		/*
 		$conditions = array('Product.published' => 1, 'Product.featured' => 1);
-		$order = 'RAND()';
-		$aProducts = $this->Product->find('all', compact('conditions', 'order', 'limit'));
-		$this->set(compact('page', 'aSlider', 'aNews', 'aProducts'));
-		*/
+		$order = array('Product.created' => 'desc');
+		$aProducts = $this->Product->find('all', compact('conditions', 'order'));
 
+		$this->set(compact('aPages', 'aNews', 'aCategories', 'aSubcategories', 'aProducts'));
 	}
 
 	public function view($slug) {

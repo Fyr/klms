@@ -40,8 +40,7 @@
 		'label' => array('class' => 'col-md-3 control-label', 'text' => __('Brand'))
 	));
 	echo $this->PHForm->input('title');
-
-	// echo $this->PHForm->input('teaser', array('label' => array('class' => 'col-md-3 control-label', 'text' => __('Subject name'))));
+	echo $this->PHForm->input('teaser');
 	// echo $this->PHForm->input('sorting', array('class' => 'form-control input-small'));
 
 	$checkboxes = array();

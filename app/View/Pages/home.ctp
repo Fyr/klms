@@ -142,7 +142,7 @@
         </div>
     </div>
 </div>
-<div class="newsSection">
+<div class="section newsSection">
     <div class="wrapper">
         <h2><?=__('Hot news')?></h2>
         <ul class="news">
@@ -152,7 +152,9 @@
 ?>
             <li>
                 <a href="<?=$url?>" class="picture" style="background-image: url(<?=$src?>);"></a>
-                <div class="title"><?=$title?></div>
+                <div class="title">
+                    <a href="<?=$url?>"><?=$title?></a>
+                </div>
                 <div class="description"><?=$teaser?></div>
                 <a href="<?=$url?>" class="more"><?=__('Read more...')?></a>
             </li>
@@ -161,47 +163,55 @@
     }
 ?>
         </ul>
-    </div>
-</div>
-<div class="recentProductsSection">
-    <div class="wrapper">
-        <h2>Recent products</h2>
-        <ul class="products">
-            <li>
-                <a href="#" class="picture" style="background-image: url('/temporary/product1.jpg');"></a>
-                <a href="#" class="title">Pianoplan 600 verticaal traplooplift</a>
-            </li>
-            <li>
-                <a href="#" class="picture" style="background-image: url('/temporary/product2.jpg');"></a>
-                <a href="#" class="title">Traccess 230 Winch rupshoogwerker</a>
-            </li>
-            <li>
-                <a href="#" class="picture" style="background-image: url('/temporary/product3.jpg');"></a>
-                <a href="#" class="title">ZED 32 JHV gearticuleerde hoogwerker</a>
-            </li>
-            <li>
-                <a href="#" class="picture" style="background-image: url('/temporary/product4.jpg');"></a>
-                <a href="#" class="title">Pianoplan 600 horizontaal traplooplift</a>
-            </li>
-            <li>
-                <a href="#" class="picture" style="background-image: url('/temporary/product5.jpg');"></a>
-                <a href="#" class="title">Pianoplan 600 standaard traplooplift</a>
-            </li>
-            <li>
-                <a href="#" class="picture" style="background-image: url('/temporary/product6.jpg');"></a>
-                <a href="#" class="title">Traccess 170/170E rupshoogwerker</a>
-            </li>
-            <li>
-                <a href="#" class="picture" style="background-image: url('/temporary/product7.jpg');"></a>
-                <a href="#" class="title">Traccess 230/230E rupshoogwerker</a>
-            </li>
-            <li>
-                <a href="#" class="picture" style="background-image: url('/temporary/product8.jpg');"></a>
-                <a href="#" class="title">ZED 29 J gearticuleerde hoogwerker</a>
-            </li>
-        </ul>
-        <div class="allProducts">
-            <a href="#" class="btn">Alle producten</a>
+        <div class="all">
+            <a href="<?=$this->Html->url(array('controller' => 'news', 'action' => 'index'))?>" class="btn"><?=__('All news')?></a>
         </div>
     </div>
 </div>
+<div class="section newsSection grey">
+    <div class="wrapper">
+        <h2><?=__('Featured products')?></h2>
+        <ul class="news">
+<?
+    foreach($aProducts as $article) {
+        $this->ArticleVars->init($article, $url, $title, $teaser, $src, '800x');
+?>
+            <li>
+                <a href="<?=$url?>" class="picture" style="background-image: url(<?=$src?>);"></a>
+                <div class="title">
+                    <a href="<?=$url?>"><?=$title?></a>
+                </div>
+                <div class="description"><?=$teaser?></div>
+                <a href="<?=$url?>" class="more"><?=__('Read more...')?></a>
+            </li>
+<?
+    }
+?>
+        </ul>
+        <div class="all">
+            <a href="<?=$this->Html->url(array('controller' => 'products', 'action' => 'index'))?>" class="btn"><?=__('All products')?></a>
+        </div>
+    </div>
+</div>
+
+<!--div class="recentProductsSection">
+    <div class="wrapper">
+        <h2><?=__('Featured products')?></h2>
+        <ul class="products">
+<?
+    foreach($aProducts as $article) {
+        $this->ArticleVars->init($article, $url, $title, $teaser, $src, '800x');
+?>
+            <li>
+                <a href="<?=$url?>" class="picture" style="background-image: url('<?=$src?>');"></a>
+                <a href="<?=$url?>" class="title"><?=$title?></a>
+            </li>
+<?
+    }
+?>
+        </ul>
+        <div class="allSection">
+            <a href="<?=$this->Html->url(array('controller' => 'products', 'action' => 'index'))?>" class="btn"><?=__('All products')?></a>
+        </div>
+    </div>
+</div-->
