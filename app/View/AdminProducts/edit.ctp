@@ -1,13 +1,13 @@
 <?
     $id = $this->request->data($objectType.'.id');
-    $title = $this->ObjectType->getTitle('index', $objectType);
+    $title = __('Catalog');
     $breadcrumbs = array(
-        __('Collections') => 'javascript:;',
-        $title => array('action' => 'index'),
+        $title => 'javascript:;',
+        $this->ObjectType->getTitle('index', $objectType) => array('action' => 'index'),
         __('Edit') => ''
     );
     echo $this->element('AdminUI/breadcrumbs', compact('breadcrumbs'));
-    echo $this->element('AdminUI/title', array('title' => __('Collections')));
+    echo $this->element('AdminUI/title', compact('title'));
     echo $this->Flash->render();
 ?>
 
@@ -21,7 +21,8 @@
 
     $tabs = array(
         __('General') => $this->Html->div('form-body', $this->element('../AdminProducts/_edit_general')),
-        __('Text') => $this->element('Article.edit_body', array('field' => 'body'))
+        __('Text') => $this->element('Article.edit_body', array('field' => 'body')),
+        __('SEO') => $this->element('Seo.edit', array('object_type' => $objectType)),
     );
 
     if ($id) {

@@ -75,6 +75,7 @@
 		background-color: #eee;
 		opacity: 0.5;
 	}
+	.cake-sql-log th, .cake-sql-log td { border: 1px solid #000; }
 </style>
 	<script src="http://<?=Configure::read('domain.url')?>/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 </head>

@@ -22,8 +22,35 @@ class Product extends AppModel {
             'className' => 'Media.Media',
             'foreignKey' => 'object_id',
             'conditions' => array('Media.media_type' => 'image', 'Media.object_type' => 'Product', 'Media.main' => 1),
-            'dependent' => false
+            'dependent' => true
+        ),
+        'Seo' => array(
+            'className' => 'Seo.Seo',
+            'foreignKey' => 'object_id',
+            'conditions' => array('Seo.object_type' => 'Product'),
+            'dependent' => true
+        )
+    );
+    public $hasMany = array(
+        'ProductTag' => array(
+            'dependent' => true
         )
     );
 
+    public function saveAll($data, $options = array()) {
+        if (isset($data['ProductTag']) && $data['ProductTag']) {
+            $tagData = array();
+            foreach($data['ProductTag'] as $tag_id => $isOn) {
+                if ($isOn) {
+                    $tagData[] = compact('tag_id');
+                }
+            }
+            $data['ProductTag'] = $tagData;
+            if (isset($data['Product']['id']) && $data['Product']['id']) {
+                $this->ProductTag = $this->loadModel('ProductTag');
+                $this->ProductTag->deleteAll(array('product_id' => $data['Product']['id']));
+            }
+        }
+        parent::saveAll($data, $options);
+    }
 }

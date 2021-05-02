@@ -1,5 +1,5 @@
 <div class="form-group">
-	<label class="col-md-3 control-label"><?//__('Status')?></label>
+	<label class="col-md-3 control-label"><?=(isset($title)) ? $title : ''?></label>
 	<div class="col-md-9">
 		<div class="checkbox-list">
 <?
