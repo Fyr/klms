@@ -48,10 +48,13 @@
 	$labels = array();
 	$values = array();
 	foreach($aTags as $tag_id => $tag) {
-		$modelField = "ProductTag.$tag_id";
+		$modelField = "ProductTag.".$tag_id;
 		$checkboxes[] = $modelField;
 		$labels[$modelField] = $tag;
-		// $values[$modelField] = $tag_id;
+	}
+	foreach($this->request->data('ProductTag') as $tag) {
+		$modelField = "ProductTag.".$tag['tag_id'];
+		$this->request->data($modelField, 1);
 	}
 	$title = __('Tags');
 	echo $this->element('AdminUI/checkboxes', compact('title', 'checkboxes', 'labels', 'values'));
