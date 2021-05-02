@@ -193,25 +193,3 @@
         </div>
     </div>
 </div>
-
-<!--div class="recentProductsSection">
-    <div class="wrapper">
-        <h2><?=__('Featured products')?></h2>
-        <ul class="products">
-<?
-    foreach($aProducts as $article) {
-        $this->ArticleVars->init($article, $url, $title, $teaser, $src, '800x');
-?>
-            <li>
-                <a href="<?=$url?>" class="picture" style="background-image: url('<?=$src?>');"></a>
-                <a href="<?=$url?>" class="title"><?=$title?></a>
-            </li>
-<?
-    }
-?>
-        </ul>
-        <div class="allSection">
-            <a href="<?=$this->Html->url(array('controller' => 'products', 'action' => 'index'))?>" class="btn"><?=__('All products')?></a>
-        </div>
-    </div>
-</div-->

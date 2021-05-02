@@ -14,6 +14,11 @@ class Product extends AppModel {
             'className' => 'Subcategory',
             'foreignKey' => 'subcat_id',
             'dependent' => false
+        ),
+        'ProductBrand' => array(
+            'className' => 'Brand',
+            'foreignKey' => 'brand_id',
+            'dependent' => false
         )
     );
 
@@ -51,6 +56,6 @@ class Product extends AppModel {
                 $this->ProductTag->deleteAll(array('product_id' => $data['Product']['id']));
             }
         }
-        parent::saveAll($data, $options);
+        return parent::saveAll($data, $options);
     }
 }

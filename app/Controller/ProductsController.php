@@ -1,19 +1,18 @@
 <?php
 App::uses('AppController', 'Controller');
 App::uses('Media', 'Media.Model');
-App::uses('Product', 'Model');
-App::uses('Category', 'Model');
-App::uses('Subcategory', 'Model');
 class ProductsController extends AppController {
 	public $name = 'Products';
-	public $uses = array('Media.Media', 'Product', 'Category', 'Subcategory');
+	public $uses = array('Media.Media', 'Product', 'Category', 'Subcategory', 'Tag');
 
 	public function beforeRender() {
 		$order = 'Category.sorting';
 		$aCategories = $this->Category->find('all', compact('order'));
 		$order = 'Subcategory.sorting';
 		$aSubcategories = $this->Subcategory->find('all', compact('order'));
-		$this->set(compact('aCategories', 'aSubcategories'));
+		$order = 'Tag.sorting';
+		$aTags = $this->Tag->find('list', compact('order'));
+		$this->set(compact('aCategories', 'aSubcategories', 'aTags'));
 
 		$this->currMenu = 'Products';
 		parent::beforeRender();
@@ -52,12 +51,12 @@ class ProductsController extends AppController {
 
 	public function view($id) {
 		$article = $this->Product->findById($id);
-		$order = null;
-		if (Hash::get($article, 'Media.file') === '3D_image') {
-			$order = array('Media.main' => 'DESC', 'Media.orig_fname' => 'ASC');
-		}
-		$aMedia = $this->Media->getList(array('object_type' => 'Product', 'object_id' => $id, 'main' => 0), $order);
-		$this->set(compact('article', 'aMedia'));
+		$aMedia = $this->Media->getList(
+			array('object_type' => 'Product', 'object_id' => $id),
+			array('created' => 'asc')
+		);
+		$aProducts = $this->Product->find('all', compact('conditions', 'order'));
+		$this->set(compact('article', 'aMedia', 'aProducts'));
 	}
 
 
