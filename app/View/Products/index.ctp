@@ -1,7 +1,18 @@
+<?
+
+?>
 <div class="newsSection">
     <div class="wrapper">
         <?=$this->element('title', array('title' => __('Products')))?>
         <?=$this->element('paginate')?>
+<?
+    foreach($filterNames as $title => $val) {
+?>
+        <b><?=$title?></b>: <?=$val?><br />
+<?
+    }
+?>
+        <br/>
         <ul class="news">
 <?
     foreach($aArticles as $article) {

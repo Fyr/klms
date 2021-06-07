@@ -3,35 +3,49 @@ App::uses('AppController', 'Controller');
 App::uses('Media', 'Media.Model');
 class ProductsController extends AppController {
 	public $name = 'Products';
-	public $uses = array('Media.Media', 'Product', 'Category', 'Subcategory', 'Tag');
+	public $uses = array('Media.Media', 'Product', 'Category', 'Subcategory', 'Tag', 'ProductTag');
 
-	public function beforeRender() {
+	protected $aCategories, $aSubcategories, $aTags;
+
+	public function beforeFilterLayout() {
 		$order = 'Category.sorting';
-		$aCategories = $this->Category->find('all', compact('order'));
+		$this->aCategories = $this->Category->find('list', compact('order'));
 		$order = 'Subcategory.sorting';
-		$aSubcategories = $this->Subcategory->find('all', compact('order'));
+		$this->aSubcategories = $this->Subcategory->find('list', compact('order'));
 		$order = 'Tag.sorting';
-		$aTags = $this->Tag->find('list', compact('order'));
-		$this->set(compact('aCategories', 'aSubcategories', 'aTags'));
+		$this->aTags = $this->Tag->find('list', compact('order'));
+
+		$this->set(array(
+			'aCategories' => $this->aCategories,
+			'aSubcategories' => $this->aSubcategories,
+			'aTags' => $this->aTags
+		));
 
 		$this->currMenu = 'Products';
-		parent::beforeRender();
-	}
-
-	public function categories() {
+		parent::beforeFilterLayout();
 	}
 
 	private function _getFilter() {
 		$filter = array();
+		$filterNames = array();
+
 		if ($cat_id = $this->request->query('cat_id')) {
-			$filter['cat_id'] = $cat_id;
+			$filter['Product.cat_id'] = $cat_id;
+			$filterNames[__('Category')] = $this->aCategories[$cat_id];
 		}
 		if ($subcat_id = $this->request->query('subcat_id')) {
-			$filter['subcat_id'] = $subcat_id;
+			$filter['Product.subcat_id'] = $subcat_id;
+			$filterNames[__('Subcategory')] = $this->aSubcategories[$subcat_id];
 		}
 		if ($q = $this->request->query('q')) {
 			$filter['OR'] = array('Product.title LIKE ' => "%$q%", 'Product.teaser LIKE ' => "%$q%");
 		}
+		if ($tag_id = $this->request->query('tag')) {
+			$rowset = $this->ProductTag->findAllByTagId($tag_id);
+			$filter['Product.id'] = Hash::extract($rowset, '{n}.ProductTag.product_id');
+			$filterNames[__('Tags')] = $this->aTags[$tag_id];
+		}
+		$this->set(compact('filter', 'filterNames'));
 		return $filter;
 	}
 
@@ -44,9 +58,8 @@ class ProductsController extends AppController {
 				'limit' => 8
 			)
 		);
-		$this->set('filter', $filter);
 		$this->set('aArticles', $this->paginate('Product'));
-		$this->set('lDirectSearch', $this->request->query('q') && true);
+		// $this->set('lDirectSearch', $this->request->query('q') && true);
 	}
 
 	public function view($id) {

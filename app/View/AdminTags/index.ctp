@@ -13,7 +13,6 @@
     array_unshift($columns, array('key' => 'Media.image', 'label' => __('Photo'), 'format' => 'string', 'align' => 'center'));
 
     $rowset = $this->PHTableGrid->getDefaultRowset($objectType);
-fdebug($rowset);
     foreach($rowset as &$row) {
         $src = $this->Media->imageUrl($row, '100x');
         $row['Media']['image'] = ($src) ? $this->Html->image($src, array('class' => 'admin-thumb')) : '';
