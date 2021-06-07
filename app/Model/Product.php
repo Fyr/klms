@@ -3,6 +3,14 @@ App::uses('AppModel', 'Model');
 App::uses('Category', 'Model');
 App::uses('Media', 'Media.Model');
 class Product extends AppModel {
+    public $validate = array(
+        'title' => array(
+            'checkNotEmpty' => array(
+                'rule' => 'notBlank',
+                'message' => 'Field is mandatory',
+            )
+        ),
+    );
 
     public $belongsTo = array(
         'ProductCategory' => array(

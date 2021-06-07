@@ -7,7 +7,23 @@
     echo $this->element('AdminUI/breadcrumbs', compact('breadcrumbs'));
     echo $this->element('AdminUI/title', compact('title'));
     echo $this->Flash->render();
+
+    $columns = $this->PHTableGrid->getDefaultColumns($objectType);
+    unset($columns['Media.*']);
+    array_unshift($columns, array('key' => 'Media.image', 'label' => __('Photo'), 'format' => 'string', 'align' => 'center'));
+
+    $rowset = $this->PHTableGrid->getDefaultRowset($objectType);
+fdebug($rowset);
+    foreach($rowset as &$row) {
+        $src = $this->Media->imageUrl($row, '100x');
+        $row['Media']['image'] = ($src) ? $this->Html->image($src, array('class' => 'admin-thumb')) : '';
+    }
 ?>
+<style>
+    .table.dataTable > tbody > tr > td:first-child {
+        text-align: center;
+    }
+</style>
 <div class="row">
     <div class="col-md-12">
         <div class="portlet light bordered">
@@ -23,11 +39,10 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-
                         </div>
                     </div>
                 </div>
-                <?=$this->PHTableGrid->render($objectType)?>
+                <?=$this->PHTableGrid->render($objectType, compact('columns', 'rowset'))?>
             </div>
         </div>
     </div>

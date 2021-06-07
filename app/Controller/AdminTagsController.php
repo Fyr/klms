@@ -7,7 +7,7 @@ class AdminTagsController extends AdminContentController {
     public $uses = array('Tag');
 
     public $paginate = array(
-        'fields' => array('title', 'sorting'),
+        'fields' => array('title', 'sorting', 'Media.*'),
         'order' => array('sorting' => 'asc'),
         'limit' => 20
     );
