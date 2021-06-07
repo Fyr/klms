@@ -24,46 +24,28 @@
     </div>
 </div>
 
-<div class="productsSection">
-    <h2>Productsoorten</h2>
-    <ul>
-        <li>
-            <a href="#">
-                <span class="icon landbouw"></span>
-                <span class="name">Landbouw</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <span class="icon liften"></span>
-                <span class="name">Liften</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <span class="icon tuin"></span>
-                <span class="name">tuin & park</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <span class="icon reiniging"></span>
-                <span class="name">reiniging</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <span class="icon hoogwerkers"></span>
-                <span class="name">hoogwerkers</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <span class="icon kranen"></span>
-                <span class="name">kranen</span>
-            </a>
-        </li>
-    </ul>
+<div class="section recentProductsSection grey">
+    <div class="wrapper">
+        <h2><?=__('Product tags')?></h2>
+        <ul class="products">
+<?
+    foreach($aTags as $tag) {
+        $src = $this->Media->imageUrl($tag, '600x');
+        $url = $this->Html->url(array('controller' => 'products', 'action' => 'index', '?' => array('tag' => $tag['Tag']['id'])));
+?>
+            <li>
+                <a href="<?=$url?>" class="picture" style="background-image: url('<?=$src?>');"></a>
+                <a href="<?=$url?>" class="title"><?=$tag['Tag']['title']?></a>
+            </li>
+
+<?
+    }
+?>
+        </ul>
+        <div class="all">
+            <a href="<?=$this->Html->url(array('controller' => 'products', 'action' => 'index'))?>" class="btn"><?=__('All products')?></a>
+        </div>
+    </div>
 </div>
 <div class="categorySection">
     <div class="wrapper">
@@ -95,53 +77,7 @@
         </ul>
     </div>
 </div>
-<div class="searchSection">
-    <div class="wrapper">
-        <h2 class="mb">Zoek Producten</h2>
-        <div class="formElements">
-            <div>
-                <span class="name first">Type: </span>
-                <select class="type" >
-                    <option>- All types -</option>
-                    <option>Effer</option>
-                    <option>CTE groep</option>
-                    <option>Cappellotto</option>
-                    <option>B-lift telescoop hoogwerkers</option>
-                    <option>ZED gearticuleerde hoogwerker wer wer wer wer we</option>
-                    <option>B-lift telescoop hoogwerkers</option>
-                </select>
-            </div>
-            <div>
-                <span class="name brand">Brand: </span>
-                <select class="type" >
-                    <option>- All types -</option>
-                    <option>Effer</option>
-                    <option>CTE groep</option>
-                    <option>Cappellotto</option>
-                    <option>B-lift telescoop hoogwerkers</option>
-                    <option>ZED gearticuleerde hoogwerker wer wer wer wer we</option>
-                    <option>B-lift telescoop hoogwerkers</option>
-                </select>
-            </div>
-            <div>
-                <span class="name brand">Category: </span>
-                <label class="checkbox">
-                    <input  type="checkbox" />
-                    Gebruikt
-                </label>
-                <label class="checkbox">
-                    <input  type="checkbox" />
-                    Overige categorie?n
-                </label>
-                <label class="checkbox">
-                    <input  type="checkbox" />
-                    Nieuw
-                </label>
-                <button class="btn">Search</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="section newsSection">
     <div class="wrapper">
         <h2><?=__('Hot news')?></h2>

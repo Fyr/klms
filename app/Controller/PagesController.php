@@ -4,9 +4,10 @@ App::uses('Media', 'Media.Model');
 App::uses('Page', 'Model');
 App::uses('News', 'Model');
 App::uses('Product', 'Model');
+App::uses('Tag', 'Model');
 class PagesController extends AppController {
-	public $uses = array('Media.Media', 'Page', 'News', 'Product', 'Category', 'Subcategory');
-	public $helpers = array('Core.PHTime');
+	public $uses = array('Media.Media', 'Page', 'News', 'Product', 'Category', 'Subcategory', 'Tag');
+	public $helpers = array('Core.PHTime', 'Media');
 
 	public function home() {
 		$pageSlugs = array('home', 'home-text', 'home-text2');
@@ -28,7 +29,9 @@ class PagesController extends AppController {
 		$order = array('Product.created' => 'desc');
 		$aProducts = $this->Product->find('all', compact('conditions', 'order'));
 
-		$this->set(compact('aPages', 'aNews', 'aCategories', 'aSubcategories', 'aProducts'));
+		$aTags = $this->Tag->find('all');
+
+		$this->set(compact('aPages', 'aNews', 'aCategories', 'aSubcategories', 'aProducts', 'aTags'));
 	}
 
 	public function view($slug) {
