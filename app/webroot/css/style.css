@@ -55,7 +55,7 @@ body {
     padding: 0px 2% 0 2%;
     font-family: 'LandRoverWeb-Medium';
     position: relative;
-    z-index: 2;
+    z-index: 301;
 }
 
 .header .logo {
@@ -133,7 +133,7 @@ body {
     left: 0;
     margin: 0;
     position: absolute;
-    top: 53px;
+    top: 33px;
     z-index: 9999;
     font-family: 'Avenir';
     font-size: 14px;
@@ -148,6 +148,7 @@ body {
     color: #fff;
     text-decoration: none;
     position: relative;
+    white-space: nowrap;
 }
 
 .header .menu > li > ul  a:before {
@@ -203,6 +204,27 @@ body {
     background-image: url('../img/sprite.png');
     background-repeat: no-repeat;
     background-position: -168px -1165px;
+}
+
+.header .menu  li > ul {
+    margin: 5px 0 5px 9px;
+}
+
+
+.menu .dot, .menuMobile .dot {
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #fff;
+    transform: rotate(45deg);
+    vertical-align: top;
+    margin: 7px 5px 0 0;
+}
+
+.menu .active > .dot, .menuMobile .active > .dot {
+    transform: rotate(135deg);
+    margin-top: 6px;
 }
 
 
@@ -419,6 +441,11 @@ body {
 
 .menuMobile > li > ul > li {
     margin: 5px 0;
+}
+
+
+.menuMobile > li > ul  li > ul {
+    margin: 10px 0 10px 10px;
 }
 
 
@@ -711,7 +738,10 @@ a:hover .icon.kranen { background-position: -152px -960px;  }
 .icon.arrow-left1 {  width: 26px; height: 49px; background-position: -122px -1287px; }
 .icon.arrow-left1:hover {  width: 26px; height: 49px; background-position: -222px -1287px; }
 
-.icon.phoneIcon {  width: 18px; height: 21px; background-position: -98px -1223px; }
+.icon.phoneIcon {  width: 18px; height: 21px; background-position: -123px -1228px; }
+
+.icon.arrow { width: 8px; height: 8px; border-top: 2px solid #060606; border-right: 2px solid #060606; background: none; }
+.icon.smallArrow { width: 5px; height: 5px; border-top: 1px solid #060606; border-right: 1px solid #060606; background: none; }
 
 
 
@@ -942,7 +972,7 @@ label.checkbox {
 .newsSection .news li {
     width: calc(33.33% - 5%);
     margin-left: 5%;
-    margin-top: 5%;
+    margin-top: 20px;
 }
 
 @media (max-width: 1220px) {
@@ -1207,3 +1237,114 @@ label.checkbox {
 
     .footer .copyright1 { display: block; color: #848484; margin-top: 20px;}
 }
+
+
+.oneLeftSide {
+    float: left;
+    width: 228px;
+    margin: 20px 0 0 0;
+}
+
+
+.catalog {  border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-top: none;}
+    .catalog li { }
+    .catalog li a { font-size: 14px; text-decoration: none; padding: 8px 0 7px 17px; display: block; } 
+    .catalog li .firstLevel { color: #484848;  }
+    .catalog li .icon.arrow { margin-right: 12px; vertical-align: top; margin-top: 5px; transform: rotate(45deg); }
+    .catalog li a.active {
+            background: #ecedee;
+    }
+    .catalog li a.active .arrow { transform: rotate(135deg); margin-top: 4px; }
+    .catalog li ul li a { font-size: 12px; color: #363636; padding: 10px 0 9px 43px;}
+    .catalog li ul li a:hover, .catalog li ul li a.active {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        text-decoration: underline;
+       
+    }
+    .catalog .icon.smallArrow { vertical-align: top;  margin-top: 6px; margin-right: 8px; transform: rotate(45deg);}
+
+
+.catalogHead {
+    background: rgba(0, 0, 0, 0.7);
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff; 
+    text-transform: uppercase; 
+    padding: 10px 0 9px 17px;
+}
+
+
+@media (max-width: 900px) {
+    .oneLeftSide { display: none;}
+}
+
+
+.mobileCatalogeBtn { display: none; }
+@media (max-width: 720px)  { 
+    .mobileCatalogeBtn { display: block; position: fixed; border: 1px solid black; left: 0; top: 200px; width: 30px; padding: 20px 0 20px 0; z-index:300; 
+        background: rgba(0, 0, 0, 0.85);
+        opacity: 0.7;
+        cursor: pointer;
+    }
+
+    .mobileCatalogeBtn:before {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-top: 2px solid #fff;
+        border-right: 2px solid #fff;
+        background: none;
+        transform: rotate(45deg);
+        margin-left: -3px;
+    }
+
+
+    .mobileCatalogeBtn .text { writing-mode: vertical-lr; text-orientation: upright; font-weight: bold; font-size: 20px; text-align: center; display: block; margin: 20px auto 0 -3px; letter-spacing: -4px; color: #fff; }
+}
+
+
+.mobileCataloge { display: none; position: fixed; top: 0; left: 0; height: 100%; width: 90%; z-index: 400; }
+@media (min-width: 768px) { .mobileCataloge { padding-top: 0; } }
+    
+/*получпрозрачный фон*/
+.mobileCataloge .mm__bg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 100; }
+    
+/*Контейнер мобильного меню, именно он выезжает слева*/
+.mobileCataloge .mm__wrapper {
+    visibility: hidden;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    transition: all .4s ease-in-out;
+    overflow-y: auto;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 400;
+    touch-action: auto;
+    -ms-touch-action: auto;
+    background: #fff; 
+    box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 768px) { .mobileCataloge .mm__wrapper { width: 35%; } }
+@media (min-width: 1200px) { .mobileCataloge .mm__wrapper { width: 25%; } }
+
+.mobileCataloge__inner { 
+    margin-top: -60px;
+    border-right: 1px solid #000;
+}
+   
+      
+/*Стили крестика закрытия меню*/
+.mobileCataloge  .close-btn { display: block; position: sticky; top: 15px; right: 0; left:100%; margin-right: 15px; margin-top: 15px; width: 45px; height: 45px; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); cursor: pointer; z-index: 200; }
+.mobileCataloge  .close-btn {
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 50%;
+}
+
+.close-btn:before { width: 2px; height: 30px; left: 22px; top: 8px; }
+.close-btn:after { height: 2px; width: 30px; top: 22px; left: 8px; }
+.close-btn:before, .close-btn:after { content: ""; background: #cea900; position: absolute; }
