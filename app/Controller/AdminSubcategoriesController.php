@@ -9,7 +9,7 @@ class AdminSubcategoriesController extends AdminContentController {
     protected $parentModel = 'Category';
 
     public $paginate = array(
-        'fields' => array('title', 'published', 'sorting'),
+        'fields' => array('title', 'published', 'featured', 'sorting'),
         'order' => array('sorting' => 'asc'),
         'limit' => 20
     );

@@ -9,7 +9,7 @@
     echo $this->Flash->render();
 
     $columns = $this->PHTableGrid->getDefaultColumns($objectType);
-    $columns[$objectType.'.featured']['label'] = __('Home page');
+    $columns[$objectType.'.featured']['label'] = __('For Homepage');
     unset($columns['Media.*']);
     array_unshift($columns, array('key' => 'Media.image', 'label' => __('Photo'), 'format' => 'string', 'align' => 'center'));
 

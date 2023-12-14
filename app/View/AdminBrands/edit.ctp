@@ -21,7 +21,7 @@
 
     $tabs = array(
         __('General') => $this->Html->div('form-body',
-            $this->element('AdminUI/checkboxes', array('labels' => array('published' => __('Published'), 'featured' => __('For home page'))))
+            $this->element('AdminUI/checkboxes', array('labels' => array('published' => __('Published'), 'featured' => __('For Homepage'))))
             .$this->PHForm->input('title', array('label' => array('class' => 'col-md-3 control-label', 'text' => __('Title'))))
             .$this->PHForm->input('teaser', array('label' => array('class' => 'col-md-3 control-label', 'text' => __('Teaser'))))
             //.$this->PHForm->input('sorting', array('class' => 'form-control input-small'))
