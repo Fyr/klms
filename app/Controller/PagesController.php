@@ -7,13 +7,13 @@ App::uses('Product', 'Model');
 App::uses('Tag', 'Model');
 class PagesController extends AppController {
 	public $uses = array('Media.Media', 'Page', 'News', 'Product', 'Category', 'Subcategory', 'Tag');
-	public $helpers = array('Core.PHTime', 'Media');
+	public $helpers = array('Core.PHTime', 'Media', 'Html');
 
 	public function home() {
-		$pageSlugs = array('home', 'home-text', 'home-text2');
+		$aArticles = $this->Page->find('all', array('conditions' => array('slug LIKE "home%"')));
 		$aPages = array();
-		foreach($pageSlugs as $slug) {
-			$aPages[$slug] = $this->Page->findBySlug($slug);
+		foreach($aArticles as $article) {
+			$aPages[$article['Page']['slug']] = $article;
 		}
 
 		// hot news
@@ -23,6 +23,12 @@ class PagesController extends AppController {
 
 		$aCategories = $this->Category->findAllByPublished(1, null, array('Category.sorting' => 'ASC'));
 		$aSubcategories = $this->Subcategory->findAllByPublished(1, null, array('Subcategory.sorting' => 'ASC'));
+		$aFeaturedSubcategories = array();
+		foreach($aSubcategories as $subcategory) {
+			if ($subcategory['Subcategory']['featured']) {
+				$aFeaturedSubcategories[] = $subcategory;
+			}
+		}
 		$aSubcategories = Hash::combine($aSubcategories, '{n}.Subcategory.id', '{n}', '{n}.Subcategory.parent_id');
 
 		$conditions = array('Product.published' => 1, 'Product.featured' => 1);
@@ -31,7 +37,7 @@ class PagesController extends AppController {
 
 		$aTags = $this->Tag->find('all');
 
-		$this->set(compact('aPages', 'aNews', 'aCategories', 'aSubcategories', 'aProducts', 'aTags'));
+		$this->set(compact('aPages', 'aNews', 'aCategories', 'aSubcategories', 'aFeaturedSubcategories', 'aProducts', 'aTags'));
 	}
 
 	public function view($slug) {

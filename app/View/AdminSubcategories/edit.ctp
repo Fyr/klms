@@ -32,6 +32,10 @@
         __('SEO') => $this->element('Seo.edit', array('object_type' => $objectType)),
     );
 
+    if ($id) {
+        $tabs[__('Media')] = $this->element('Media.edit', array('object_type' => $objectType, 'object_id' => $id));
+    }
+
     echo $this->element('AdminUI/tabs', compact('tabs'));
     echo $this->element('AdminUI/form_actions', array('backURL' => $indexURL));
     echo $this->PHForm->end();

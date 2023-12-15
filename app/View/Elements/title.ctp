@@ -1,1 +1,4 @@
-<h1><?=$title?></h1>
+<?
+    $level = (!isset($level)) ? 1 : $level;
+    echo $this->Html->tag('h'.$level, $title);
+?>

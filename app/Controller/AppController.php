@@ -113,7 +113,7 @@ class AppController extends Controller {
 		// $this->set('aBottomLinks', $this->aBottomLinks);
 		// $this->set('currLink', $this->currLink);
 		$this->Brand = $this->loadModel('Brand');
-		$aPartners = $this->Brand->findAllByPublishedAndFeatured(1, 1);
+		$aPartners = $this->Brand->findAllByPublished(1);
 		$this->set('aPartners', $aPartners);
 	}
 /*
