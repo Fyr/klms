@@ -55,7 +55,7 @@ class ProductsController extends AppController {
 			'Product' => array(
 				'conditions' => array_merge(array('Product.published' => 1), $filter),
 				'order' => array('modified' => 'desc'),
-				'limit' => 8
+				'limit' => 9
 			)
 		);
 		$this->set('aArticles', $this->paginate('Product'));

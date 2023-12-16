@@ -22,7 +22,7 @@ class AppController extends Controller {
 	}
 
 	protected function _beforeInit() {
-		$this->helpers = array_merge(array('ArticleVars', 'Media'), $this->helpers); // 'ArticleVars', 'Media.PHMedia', 'Core.PHTime', 'Media', 'ObjectType'
+		$this->helpers = array_merge(array('ArticleVars', 'Media', "Html"), $this->helpers); // 'ArticleVars', 'Media.PHMedia', 'Core.PHTime', 'Media', 'ObjectType'
 	}
 
 	protected function _afterInit() {
@@ -62,7 +62,7 @@ class AppController extends Controller {
 		throw new NotFoundException();
 	}
 
-	private function _getCurrMenu() {
+	protected function _getCurrMenu() {
 		foreach($this->aNavBar as $curr => $item) {
 			if ($this->request->controller == $item['url']['controller'] && $this->request->action == $item['url']['action']) {
 				return $curr;
@@ -86,7 +86,7 @@ class AppController extends Controller {
 			'Contacts' => array('title' => __('Contacts'), 'url' => array('controller' => 'pages', 'action' => 'view', 'contacts')),
 		);
 		$this->currMenu = $this->_getCurrMenu();
-		// $this->aBottomLinks = $this->aNavBar;
+		$this->set('aBottomLinks', $this->aNavBar);
 		// $this->currLink = $this->_currMenu;
 		$this->Auth->allow(array('home', 'view', 'index', 'login'));
 		$this->currUser = array();
@@ -97,11 +97,66 @@ class AppController extends Controller {
 		$this->beforeRenderLayout();
 	}
 
+	/*
+	protected function _getNavBar() {
+	}
+	*/
+
 	protected function beforeRenderLayout() {
 		// $this->set('lang', Configure::read('Config.language'));
 		$this->set('currUser', $this->currUser);
-		$this->set('aNavBar', $this->aNavBar);
 		$this->set('currMenu', $this->currMenu);
+
+		$this->Category = $this->loadModel('Category');
+		$aCategories = $this->Category->findAllByPublished(1, null, array('Category.sorting' => 'ASC'));
+		$aCategories = Hash::combine($aCategories, '{n}.Category.id', '{n}');
+
+		$this->Subcategory = $this->loadModel('Subcategory');
+		$aSubcategories = $this->Subcategory->findAllByPublished(1, null, array('Subcategory.sorting' => 'ASC'));
+		$aSubcategories = Hash::combine($aSubcategories, '{n}.Subcategory.id', '{n}', '{n}.Subcategory.parent_id');
+
+		$this->Product = $this->loadModel('Product');
+		$aProducts = $this->Product->findAllByPublished(1);
+		$aProducts = Hash::combine($aProducts, '{n}.Product.id', '{n}', '{n}.Product.subcat_id');
+
+		foreach($aCategories as $cat_id => $category) {
+			$submenu = array();
+			if (isset($aSubcategories[$cat_id]) && $aSubcategories[$cat_id]) {
+				foreach($aSubcategories[$cat_id] as $subcat_id => $subcat) {
+					$productsMenu = array();
+					if (isset($aProducts[$subcat_id]) && $aProducts[$subcat_id]) {
+						foreach($aProducts[$subcat_id] as $id => $product) {
+							$productsMenu[] = array(
+								'title' => $product['Product']['title'],
+								'url' => array('controller' => 'products', 'action' => 'view', $id)
+							);
+						}
+					}
+					$submenu[] = array(
+						'title' => $subcat['Subcategory']['title'],
+						'submenu' => $productsMenu,
+						'url' => $productsMenu ? '' : array('controller' => 'products', 'action' => 'index', '?' => compact('subcat_id'))
+					);
+				}
+			}
+
+			$this->aNavBar['Products']['submenu']['cat_'.$cat_id] = array(
+				'title' => $category['Category']['title'],
+				'submenu' => $submenu,
+				'url' => $submenu ? '' : array('controller' => 'products', 'action' => 'index', '?' => compact('cat_id'))
+			);
+		}
+
+		$this->Brand = $this->loadModel('Brand');
+		$aPartners = $this->Brand->findAllByPublished(1);
+		foreach($aPartners as $brand) {
+			$this->aNavBar['Brands']['submenu'][] = array(
+				'title' => $brand['Brand']['title'],
+				'url' => array('controller' => 'brands', 'action' => 'view', $brand['Brand']['id'])
+			);
+		}
+		$this->set('aPartners', $aPartners);
+		$this->set('aNavBar', $this->aNavBar);
 
 		// init slider - could be on every page or only on home
 		$this->Page = $this->loadModel('Page');
@@ -112,9 +167,6 @@ class AppController extends Controller {
 		$this->set('slider', $slider);
 		// $this->set('aBottomLinks', $this->aBottomLinks);
 		// $this->set('currLink', $this->currLink);
-		$this->Brand = $this->loadModel('Brand');
-		$aPartners = $this->Brand->findAllByPublished(1);
-		$this->set('aPartners', $aPartners);
 	}
 /*
 	protected function _refreshUser($lForce = false) {

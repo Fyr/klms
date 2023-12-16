@@ -40,12 +40,12 @@
                 <div class="textMenu">menu</div>
             </label>
 
-            <?=$this->element('main_menu', array('class' => 'menuMobile'))?>
+            <?=$this->element('menu', array('class' => 'menuMobile'))?>
         </div>
 
         <a href="/"><img src="/img/logo.png" class="logo" alt="<?=Configure::read('domain.title')?>" /></a>
         <div class="phone"><?=Configure::read('Settings.phone')?></div>
-        <?=$this->element('main_menu')?>
+        <?=$this->element('menu', array('class' => 'menu'))?>
 
         <a href="tel:<?=str_replace(' ', '', Configure::read('Settings.phone'))?>" class="icon phoneIcon"></a>
     </div>
@@ -121,7 +121,7 @@
         <div class="wrapper">
             <div class="inner">
                 <div>
-                    <?=$this->element('main_menu', array('class' => 'bottomMenu'))?>
+                    <?=$this->element('menu', array('aNavBar' => $aBottomLinks, 'class' => 'bottomMenu'))?>
                     <div class="copyright">2023 &copy; KLUYTMANS</div>
                 </div>
                 <div class="bottomContent">

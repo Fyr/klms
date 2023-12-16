@@ -15,6 +15,10 @@
         <br/>
         <div class="clearfix">
             <div class="oneLeftSide">
+                <!-- catalog menu -->
+                <?=$this->element('menu', array('aNavBar' => $aNavBar['Products']['submenu'], 'class' => 'catalog'))?>
+                <!-- /catalog menu -->
+                
                 <div class="block catalogBlock">
                     <div class="catalogHead">Категория 1</div>
                     <ul class="catalog">

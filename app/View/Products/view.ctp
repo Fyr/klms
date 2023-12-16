@@ -17,7 +17,8 @@
         $tags[] = $aTags[$tag['tag_id']];
     }
     $aTable = array(
-        __('Category') => $article['ProductCategory']['title'].' / '.$article['ProductSubcategory']['title'],
+        __('Category') => $article['ProductCategory']['title'],
+        __('Subcategory') => $article['ProductSubcategory']['title'],
         __('Brand') => $article['ProductBrand']['title'],
         __('Tags') => implode(', ', $tags)
     );

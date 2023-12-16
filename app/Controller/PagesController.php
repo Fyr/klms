@@ -7,7 +7,7 @@ App::uses('Product', 'Model');
 App::uses('Tag', 'Model');
 class PagesController extends AppController {
 	public $uses = array('Media.Media', 'Page', 'News', 'Product', 'Category', 'Subcategory', 'Tag');
-	public $helpers = array('Core.PHTime', 'Media', 'Html');
+	public $helpers = array('Core.PHTime', 'Media');
 
 	public function home() {
 		$aArticles = $this->Page->find('all', array('conditions' => array('slug LIKE "home%"')));
