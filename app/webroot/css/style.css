@@ -47,15 +47,20 @@ body {
 
 
 .header {
-    background: rgba(0, 0, 0, 0.85);
+    /* background: rgba(0, 0, 0, 0.85); */
+    background: #1b1b1b;
     height: 87px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0px 2% 0 2%;
     font-family: 'LandRoverWeb-Medium';
-    position: relative;
+    /* position: relative; */
     z-index: 301;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 .header .logo {
@@ -129,10 +134,12 @@ body {
 }
 
 .header .menu > li > ul {
-    background: #0b0b0b;
+    background: rgba(0, 0, 0, 0.85);
     left: 0;
     margin: 0;
     position: absolute;
+    overflow-y: auto;
+    overflow-x: hidden;
     top: 33px;
     z-index: 9999;
     font-family: 'Avenir';
@@ -155,7 +162,7 @@ body {
     content: '';
     display: block;
     height: 1px;
-    background: #cea900;
+    background: #4d5459;
     position: absolute;
     transition: all .3s ease-in-out;
     left: 50%;
@@ -170,9 +177,25 @@ body {
 
 
 .header .phone {
+    
+    margin-left: 20px;
+}
+
+.header .phone .phonewithIcon {
     color: #cea900;
     font-size: 24px;
-    margin-left: 20px;
+}
+
+.header .phone .phonewithIcon * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.header .phone .phonewithIcon .phoneIcon { margin-top: 5px }
+
+.header .phone .address {
+    color: #848484;
+    font-size: 12px;
 }
 
 .header .search {
@@ -206,8 +229,9 @@ body {
     background-position: -168px -1165px;
 }
 
-.header .menu  li > ul {
-    margin: 0px 0 0px 9px;
+.header .menu  li > ul ul {
+    margin: 5px 0 5px 0px;
+    padding-left: 12px;
 }
 
 
@@ -219,10 +243,10 @@ body {
     border-right: 1px solid #fff;
     transform: rotate(45deg);
     vertical-align: top;
-    margin: 7px 5px 0 0;
+    margin: 8px 8px 0 -2px;
 }
 
-.menu .active > .dot, .menuMobile .active > .dot {
+.menu .active > .dot, .menu .down > .dot, .menuMobile .active > .dot {
     transform: rotate(135deg);
     margin-top: 6px;
 }
@@ -353,10 +377,11 @@ body {
 .menuMobile {
     display: block;
     position: fixed;
-    visibility: hidden;
+    /* visibility: hidden; */
     top: 50px;
     left: -100%;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y:auto;
   
     width: 300px;
     height: calc( 100% - 50px);
@@ -429,7 +454,7 @@ body {
 }
 
 .menuMobile > li > ul {
-    background: #4c5358;
+    /* background: #4c5358; */
     margin: 0 0 0 -33px;
     font-size: 14px;
     padding: 10px 0 10px 44px;
@@ -439,13 +464,13 @@ body {
     color: #fff;
 }
 
-.menuMobile > li > ul > li {
+/* .menuMobile > li > ul > li {
     margin: 5px 0;
-}
+} */
 
 
 .menuMobile > li > ul  li > ul {
-    margin: 0px 0 0px 10px;
+    margin: 8px 0 8px 12px;
 }
 
 
@@ -458,7 +483,7 @@ body {
 
 @media (max-width: 1439px) {
     .header .logo { width: 190px; }
-    .header .phone { font-size:  18px; }
+    .header .phone .phonewithIcon { font-size:  18px; }
     .header .search .searchText span { display: none; }
     .header .search .searchText:before { margin-right: 0; }
 }
@@ -476,7 +501,7 @@ body {
 
 @media (min-width: 901px) {
     .hamburger-menu { display: none; }
-    .header .phoneIcon { display: none; }
+    .header > .phoneIcon { display: none; }
 }
 
 
@@ -770,7 +795,7 @@ a:hover .icon.kranen { background-position: -152px -960px;  }
     margin: 5% 0 0 5%;
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
+    background-size: contain;
 }
 
 @media (max-width: 1220px) {
@@ -1247,33 +1272,52 @@ label.checkbox {
 
 
 .catalog {  border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-top: none;}
-    .catalog li { }
     .catalog li a { font-size: 14px; text-decoration: none; padding: 8px 0 7px 17px; display: block; } 
-    .catalog li .firstLevel { color: #484848;  }
-    .catalog li .icon.arrow { margin-right: 12px; vertical-align: top; margin-top: 5px; transform: rotate(45deg); }
-    .catalog li a.active {
-            background: #ecedee;
-    }
-    .catalog li a.active .arrow { transform: rotate(135deg); margin-top: 4px; }
-    .catalog li ul li a { font-size: 12px; color: #363636; padding: 10px 0 9px 43px;}
-    .catalog li ul li a:hover, .catalog li ul li a.active {
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-        box-shadow: none;
-        text-decoration: underline;
-       
-    }
-    .catalog .icon.smallArrow { vertical-align: top;  margin-top: 6px; margin-right: 8px; transform: rotate(45deg);}
+    .catalog > li > ul { background: #eee;}
+    .catalog > li > ul > li > a { color: #363636; padding: 10px 0 9px 36px;}
+    .catalog > li > ul > li > ul > li > a { color: #363636; padding: 5px 0 5px 10px; margin-left: 44px;}
 
+    .catalog li ul li a:hover, .catalog li ul li a.active {text-decoration: underline;}
 
-.catalogHead {
+.catalog > li > a {
     background: rgba(0, 0, 0, 0.7);
     font-size: 12px;
     font-weight: 700;
     color: #fff; 
     text-transform: uppercase; 
     padding: 10px 0 9px 17px;
+    margin-bottom: 1px;
+}    
+
+
+
+.catalog .dot {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-top: 2px solid #060606;
+    border-right: 2px solid #060606;
+    transform: rotate(45deg);
+    vertical-align: top;
+    margin: 6px 12px 0 -2px;
 }
+
+.catalog .active > .dot {
+    transform: rotate(135deg);
+    margin-top: 5px;
+}
+
+
+.catalog > li  > a > .dot  {
+    border-top-color: #fff;
+    border-right-color: #fff;
+    margin-top: 5px;
+}
+
+.catalog > li  > .active > .dot {
+    margin-top: 3px;
+}
+
 
 
 @media (max-width: 900px) {
@@ -1347,4 +1391,4 @@ label.checkbox {
 
 .close-btn:before { width: 2px; height: 30px; left: 22px; top: 8px; }
 .close-btn:after { height: 2px; width: 30px; top: 22px; left: 8px; }
-.close-btn:before, .close-btn:after { content: ""; background: #cea900; position: absolute; }
+.close-btn:before, .close-btn:after { content: ""; background: #fff; position: absolute; }

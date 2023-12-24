@@ -1,3 +1,28 @@
+<div id="owl-carousel" class="owl-carousel bigSlider">
+<?
+        foreach($slider['Slides'] as $i => $media) {
+            $src = $this->Media->imageUrl($media);
+            if ($i === 0) {
+?>
+    <div class="item" style="background-image: url('<?=$src?>')">
+        <div class="wrapper">
+            <div class="back">
+                <div class="title"><?=$slider['Page']['title']?></div>
+                <div class="description"><?=$this->ArticleVars->body($slider)?></div>
+                <a href="<?=$this->Html->url(array('controller' => 'pages', 'action' => 'view', 'about-us'))?>" class="btn btn-blue"><?=__('Read more...')?></a>
+            </div>
+        </div>
+    </div>
+<?
+            } else {
+?>
+    <div class="item" style="background-image: url('<?=$src?>')"></div>
+<?
+            }
+        }
+?>
+</div>
+
 <div class="welcomeSection">
     <div class="wrapper">
 <?

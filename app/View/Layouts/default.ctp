@@ -44,65 +44,22 @@
         </div>
 
         <a href="/"><img src="/img/logo.png" class="logo" alt="<?=Configure::read('domain.title')?>" /></a>
-        <div class="phone"><?=Configure::read('Settings.phone')?></div>
+        <div class="phone">
+            <div class="phonewithIcon">
+                <a href="tel:<?=Configure::read('Settings.phone')?>" class="icon phoneIcon"></a>
+                <span><?=Configure::read('Settings.phone')?></span>
+            </div>
+            <div class="address"><?=Configure::read('Settings.address')?></div>
+        </div>
         <?=$this->element('menu', array('class' => 'menu'))?>
 
         <a href="tel:<?=str_replace(' ', '', Configure::read('Settings.phone'))?>" class="icon phoneIcon"></a>
     </div>
 
-<?
-/*
-?>
-    <div class="header">
-        <a href="/"><img src="/img/logo.png" alt="<?=Configure::read('domain.title')?>" /></a>
-        <div class="phone"><?=Configure::read('Settings.phone')?></div>
-        <ul class="menu">
-<?
-    foreach($aNavBar as $menu => $item) {
-        $class = ($menu === $currMenu) ? 'active' : '';
-?>
-            <li class="<?=$class?>"><a href="<?=$this->Html->url($item['url'])?>"><?=__($item['title'])?></a></li>
-
-<?
-    }
-?>
-        </ul>
-
-<?
-*/
-    if ($currMenu === 'Home' && $slider) {
-?>
-
-    <div id="owl-carousel" class="owl-carousel bigSlider">
-<?
-        foreach($slider['Slides'] as $i => $media) {
-            $src = $this->Media->imageUrl($media);
-            if ($i === 0) {
-?>
-        <div class="item" style="background-image: url('<?=$src?>')">
-            <div class="wrapper">
-                <div class="back">
-                    <div class="title"><?=$slider['Page']['title']?></div>
-                    <div class="description"><?=$this->ArticleVars->body($slider)?></div>
-                    <a href="<?=$this->Html->url(array('controller' => 'pages', 'action' => 'view', 'about-us'))?>" class="btn btn-blue"><?=__('Read more...')?></a>
-                </div>
-            </div>
-        </div>
-<?
-            } else {
-?>
-        <div class="item" style="background-image: url('<?=$src?>')"></div>
-<?
-            }
-        }
-?>
+    <div class="main-content">
+        <?=$this->fetch('content')?>
     </div>
 
-<?
-    }
-?>
-
-    <?=$this->fetch('content')?>
     <div class="partnersSection">
         <h2 class="mb"><?=__('Our Partners')?></h2>
         <div id="owl-carousel-partners" class="partners">
@@ -125,7 +82,7 @@
                     <div class="copyright">2023 &copy; KLUYTMANS</div>
                 </div>
                 <div class="bottomContent">
-                    <a href="/"><img class="bottomLogo" src="/img/logo-footer.png" alt="<?=Configure::read('domain.title')?>" /></a>
+                    <a href="/"><img class="bottomLogo" src="/img/logo.png" alt="<?=Configure::read('domain.title')?>" /></a>
                     <div class="address"><?=Configure::read('Settings.address')?></div>
                     <div class="phone"><?=Configure::read('Settings.phone')?></div>
                     <div class="copyright1">2014 &copy; KLUYTMANS</div>
@@ -142,156 +99,10 @@
         <div class="mm__bg mm__close"></div>
         <div class="mm__wrapper" id="mm__wrapper">
             <div class="close-btn mm__close"></div>
-                <div class="mobileCataloge__inner">
-                    <div class="block catalogBlock">
-                        <div class="catalogHead">Каталог товаров</div>
-                        <ul class="catalog" id="catalog">
-                            <li>
-                                <a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>МТЗ</a>
-                                <ul style="display: none">
-                                    <li><a href="#"><span class="icon smallArrow"></span> 3522</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 2522 2822 3022</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>МАЗ</a>
-                                <ul style="display: none">
-                                    <li><a href="#"><span class="icon smallArrow"></span> 103</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 256</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 4370</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>NDC</a>
-                                <ul style="display: none">
-                                    <li><a href="#"><span class="icon smallArrow"></span> 111</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 222</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 333</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>tuin & park</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="block catalogBlock">
-                        <div class="catalogHead">Запчасти для двигателей</div>
-                        <ul class="catalog" id="catalog">
-                            <li>
-                                <a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>МТЗ</a>
-                                <ul style="display: none">
-                                    <li><a href="#"><span class="icon smallArrow"></span> 3522</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 2522 2822 3022</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>МАЗ</a>
-                                <ul style="display: none">
-                                    <li><a href="#"><span class="icon smallArrow"></span> 103</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 256</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 4370</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>NDC</a>
-                                <ul style="display: none">
-                                    <li><a href="#"><span class="icon smallArrow"></span> 111</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 222</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 333</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>tuin & park</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="block catalogBlock">
-                        <div class="catalogHead">Запчасти для сельхозтехники</div>
-                        <ul class="catalog" id="catalog">
-                            <li>
-                                <a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>МТЗ</a>
-                                <ul style="display: none">
-                                    <li><a href="#"><span class="icon smallArrow"></span> 3522</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 2522 2822 3022</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>МАЗ</a>
-                                <ul style="display: none">
-                                    <li><a href="#"><span class="icon smallArrow"></span> 103</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 256</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 4370</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>NDC</a>
-                                <ul style="display: none">
-                                    <li><a href="#"><span class="icon smallArrow"></span> 111</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 222</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 333</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>tuin & park</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="block catalogBlock">
-                        <div class="catalogHead">Запчасти для сельхозтехники</div>
-                        <ul class="catalog" id="catalog">
-                            <li>
-                                <a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>МТЗ</a>
-                                <ul style="display: none">
-                                    <li><a href="#"><span class="icon smallArrow"></span> 3522</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 2522 2822 3022</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>МАЗ</a>
-                                <ul style="display: none">
-                                    <li><a href="#"><span class="icon smallArrow"></span> 103</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 256</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 4370</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>NDC</a>
-                                <ul style="display: none">
-                                    <li><a href="#"><span class="icon smallArrow"></span> 111</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 222</a></li>
-                                    <li><a href="#"><span class="icon smallArrow"></span> 333</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>tuin & park</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="block catalogBlock">
-                      <div class="catalogHead">Запчасти для сельхозтехники</div>
-                      <ul class="catalog" id="catalog">
-                          <li>
-                              <a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>МТЗ</a>
-                              <ul style="display: none">
-                                  <li><a href="#"><span class="icon smallArrow"></span> 3522</a></li>
-                                  <li><a href="#"><span class="icon smallArrow"></span> 2522 2822 3022</a></li>
-                              </ul>
-                          </li>
-                          <li>
-                              <a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>МАЗ</a>
-                              <ul style="display: none">
-                                  <li><a href="#"><span class="icon smallArrow"></span> 103</a></li>
-                                  <li><a href="#"><span class="icon smallArrow"></span> 256</a></li>
-                                  <li><a href="#"><span class="icon smallArrow"></span> 4370</a></li>
-                              </ul>
-                          </li>
-                          <li>
-                              <a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>NDC</a>
-                              <ul style="display: none">
-                                  <li><a href="#"><span class="icon smallArrow"></span> 111</a></li>
-                                  <li><a href="#"><span class="icon smallArrow"></span> 222</a></li>
-                                  <li><a href="#"><span class="icon smallArrow"></span> 333</a></li>
-                              </ul>
-                          </li>
-                          <li><a href="javascript: void(0)" class="firstLevel"><span class="icon arrow"></span>tuin & park</a></li>
-                      </ul>
-                    </div>
+            <div class="mobileCataloge__inner">
+                <!-- catalog menu -->
+                <?=$this->element('menu', array('aNavBar' => $aNavBar['Products']['submenu'], 'class' => 'catalog'))?>
+                <!-- /catalog menu -->
             </div>
         </div>
     </div>
