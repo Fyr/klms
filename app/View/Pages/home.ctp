@@ -41,7 +41,7 @@
     echo $this->element('assoc_text', array('page' => $aPages['home-text'], 'level' => 3));
 ?>
 
-            <a href="<?=$this->Html->url(array('controller' => 'pages', 'action' => 'view', 'dealers'))?>" class="btn"><?=__('Read more...')?></a>
+            <a href="<?=$this->Html->url(array('controller' => 'brands', 'action' => 'view', 182))?>" class="btn"><?=__('Read more...')?></a>
         </div>
 <?
     $src = $this->Media->imageUrl($aPages['home-text2']);
@@ -52,7 +52,7 @@
     // Homepage text block 2
     echo $this->element('assoc_text', array('page' => $aPages['home-text2'], 'level' => 3));
 ?>
-            <a href="<?=$this->Html->url(array('controller' => 'pages', 'action' => 'view', 'contacts'))?>" class="btn"><?=__('Read more...')?></a>
+            <a href="<?=$this->Html->url(array('controller' => 'brands', 'action' => 'view', 183))?>" class="btn"><?=__('Read more...')?></a>
         </div>
     </div>
 </div>
