@@ -105,7 +105,15 @@ img.align-right { margin: 5px 0px 5px 10px; }
 
 .cake-sql-log tr, .cake-sql-log td { border: 1px solid #000 !important; }
 
+iframe {
+    margin: 0;
+    padding: 0;
+    width: 50% !important;
+}
+
 @media (max-width: 900px) {
     h1 { font-size: 36px; }
     h3 { font-size: 24px; }
+    iframe { width: 100%; }
 }
+
