@@ -6,7 +6,7 @@ App::uses('News', 'Model');
 App::uses('Product', 'Model');
 App::uses('Tag', 'Model');
 class PagesController extends AppController {
-	public $uses = array('Media.Media', 'Page', 'News', 'Product', 'Category', 'Subcategory', 'Tag');
+	public $uses = array('Media.Media', 'Page', 'News', 'Product', 'Category', 'Subcategory', 'Tag', 'Region', 'Dealer');
 	public $helpers = array('Core.PHTime', 'Media');
 
 	public function home() {
@@ -36,12 +36,25 @@ class PagesController extends AppController {
 		$aProducts = $this->Product->find('all', compact('conditions', 'order'));
 
 		$aTags = $this->Tag->find('all');
-
 		$this->set(compact('aPages', 'aNews', 'aCategories', 'aSubcategories', 'aFeaturedSubcategories', 'aProducts', 'aTags'));
 	}
 
 	public function view($slug) {
 		$this->set('article', $this->Page->findBySlug($slug));
 		$this->currMenu = ucfirst($slug);
+
+		if ($slug == 'dealers') {
+			$aRegions = Hash::combine($this->Region->find('all'), '{n}.Region.id', '{n}.Region');
+			$aDealers = $this->Dealer->find('all');
+			$aDealers = Hash::combine($aDealers, '{n}.Dealer.id', '{n}.Dealer', '{n}.Dealer.region_id'); // group by region
+			$this->set(compact('aRegions', 'aDealers'));
+		}
+	}
+
+	public function dealer($id) {
+		$this->set('dealer', $this->Dealer->findById($id));
+
+		$aRegions = Hash::combine($this->Region->find('all'), '{n}.Region.id', '{n}.Region');
+		$this->set('aRegions', $aRegions);
 	}
 }

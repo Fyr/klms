@@ -14,6 +14,8 @@ class ObjectTypeHelper extends AppHelper {
                 'Category' => __('Categories'),
                 'Subcategory' => __('Subcategories'),
                 'Product' => __('Products'),
+                'Region' => __('Regions'),
+                'Dealer' => __('Dealers'),
             ),
             'create' => array(
                 'Article' => __('Create article'),
@@ -23,7 +25,8 @@ class ObjectTypeHelper extends AppHelper {
                 'Tag' => __('Create tag'),
                 'Category' => __('Create category'),
                 'Subcategory' => __('Create subcategory'),
-                'Product' => __('Create product'),
+                'Region' => __('Create region'),
+                'Dealer' => __('Create dealer'),
             ),
             'edit' => array(
                 'Article' => __('Edit article'),
@@ -34,6 +37,8 @@ class ObjectTypeHelper extends AppHelper {
                 'Category' => __('Edit category'),
                 'Subcategory' => __('Edit subcategory'),
                 'Product' => __('Edit product'),
+                'Region' => __('Edit region'),
+                'Dealer' => __('Edit dealer'),
             ),
             'view' => array(
             	'Article' => __('View article'),

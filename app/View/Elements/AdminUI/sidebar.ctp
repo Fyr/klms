@@ -59,21 +59,11 @@
 			array('label' => __('Tags'), 'url' => array('controller' => 'AdminTags', 'action' => 'index')),
 			array('label' => __('Products'), 'url' => array('controller' => 'AdminProducts', 'action' => 'index')),
 		)),
-			/*
-		array('label' => __('Background tasks'), 'icon' => 'icon-paper-plane', 'url' => '', 'submenu' => array(
-			array('label' => __('Product Parser'), 'url' => array('controller' => 'AdminParser', 'action' => 'index')),
-		)),
-		*/
-		/*
-		array('label' => __('Users'), 'icon' => 'icon-user', 'url' => '', 'submenu' => array(
-			array('label' => __('User profiles'), 'url' => array('controller' => 'AdminUsers', 'action' => 'index')),
-			array('label' => __('Admin profile'), 'url' => array('controller' => 'AdminUsers', 'action' => 'edit', 1)),
-		)),
-		*/
 		array('label' => __('Settings'), 'icon' => 'icon-wrench', 'url' => '', 'submenu' => array(
 			// array('label' => __('System'), 'url' => array('controller' => 'AdminSettings', 'action' => 'index')),
 			array('label' => __('Contacts'), 'url' => array('controller' => 'AdminSettings', 'action' => 'contacts')),
-			// array('label' => __('Slider'), 'url' => array('controller' => 'AdminSettings', 'action' => 'slider')),
+			array('label' => __('Regions'), 'url' => array('controller' => 'AdminRegions', 'action' => 'index')),
+			array('label' => __('Dealers'), 'url' => array('controller' => 'AdminDealers', 'action' => 'index')),
 		)),
 	);
 
@@ -142,14 +132,6 @@
 	<!-- END SIDEBAR -->
 </div>
 <?
-/*
-	if ($this->request->controller == 'AdminSettings') {
-		$submenu = array('index' => 18, 'contacts' => 5);
-		$currMenu = $submenu[$this->request->action];
-	} elseif ($this->request->controller == 'AdminUsers') {
-		$currMenu = ($this->request->action == 'edit' && $this->request->pass[0] == 1) ? 16 : 15;
-	}
-*/
 	if ($currMenu) {
 ?>
 <script>

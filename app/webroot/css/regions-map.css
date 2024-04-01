@@ -1,0 +1,38 @@
+#wrap-map { margin: 0 25%; }
+.map {width: 513px; height: 600px;}
+/*.mobile-map .map {width: 431px; height: 253px;} x 0.7 */
+.region-map {position: relative; }
+.map-nav {position: absolute; z-index: 3;}
+#map-all {
+    background-image: url(/img/regions/regions_all.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    transition: all 0.5s ease-in-out;
+}
+.small-map {
+    background-image: none;
+    background-repeat: no-repeat;
+    display: block;
+    width: 46px !important;
+    height: 53px !important;
+    position: absolute;
+    z-index: 10;
+}
+.small-map:hover {
+    background-image: url('/img/regions/small_map.png');
+}
+.small-map img { width: 46px;}
+.small-map:hover img { display: none;}
+.region-point { display: block; width: 16px; height: 16px; background: url(/img/point.png) no-repeat; position: absolute;}
+.region-point:hover {background: url(/img/point-selected.png);}
+.rh { 
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 513px;
+    height: 600px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+}

@@ -1,7 +1,15 @@
+<div id="preload" style="display: none">
+<?
+    foreach($slider['Slides'] as $i => $media) {
+        $src = str_replace('.jpg.png', '.jpg', $this->Media->imageUrl($media));
+        echo $this->Html->image($src);
+    }
+?>
+</div>
 <div id="owl-carousel" class="owl-carousel bigSlider">
 <?
         foreach($slider['Slides'] as $i => $media) {
-            $src = $this->Media->imageUrl($media);
+            $src =  str_replace('.jpg.png', '.jpg', $this->Media->imageUrl($media));
             if ($i === 0) {
 ?>
     <div class="item" style="background-image: url('<?=$src?>')">
@@ -56,7 +64,6 @@
         </div>
     </div>
 </div>
-
 <div class="section recentProductsSection grey">
     <div class="wrapper">
 <?

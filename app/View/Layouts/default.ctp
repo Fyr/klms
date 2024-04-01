@@ -12,7 +12,8 @@
         'owl-carousel/owl.theme',
         'jquery.formstyler',
         'style',
-        'extra'
+        'extra',
+        'regions-map'
     ));
 
     echo $this->Html->meta('icon');
@@ -20,11 +21,11 @@
     echo $this->fetch('css');
 
   echo $this->Html->script(array(
-        'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
-    //   'vendor/jquery.1.11.0.min',
+      'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
+      // 'vendor/jquery.1.11.0.min',
       'vendor/owl.carousel.min',
       'vendor/jquery.formstyler.min',
-      'custom',
+      'custom.js',
     // '/Core/js/json_handler'
   ));
   echo $this->fetch('script');
@@ -79,13 +80,13 @@
             <div class="inner">
                 <div>
                     <?=$this->element('menu', array('aNavBar' => $aBottomLinks, 'class' => 'bottomMenu'))?>
-                    <div class="copyright">2023 &copy; KLUYTMANS</div>
+                    <div class="copyright"><?=date('Y')?> &copy; KLUYTMANS</div>
                 </div>
                 <div class="bottomContent">
                     <a href="/"><img class="bottomLogo" src="/img/logo.png" alt="<?=Configure::read('domain.title')?>" /></a>
                     <div class="address"><?=Configure::read('Settings.address')?></div>
                     <div class="phone"><?=Configure::read('Settings.phone')?></div>
-                    <div class="copyright1">2014 &copy; KLUYTMANS</div>
+                    <div class="copyright1"><?=date('Y')?> &copy; KLUYTMANS</div>
                 </div>
             </div>
         </div>
