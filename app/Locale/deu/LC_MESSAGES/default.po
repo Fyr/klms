@@ -1,0 +1,345 @@
+msgid "Record has been successfully saved"
+msgstr "deu:Record has been successfully saved!"
+
+msgid "Record has been successfully deleted"
+msgstr "deu:Record has been successfully deleted!"
+
+msgid "Settings have been successfully saved"
+msgstr "deu:Settings have been successfully saved!"
+
+msgid "Home"
+msgstr "deu:Home!"
+
+msgid "News"
+msgstr "deu:News!"
+
+msgid "Products"
+msgstr "deu:Products!"
+
+msgid "Brands"
+msgstr "deu:Brands!"
+
+msgid "About us"
+msgstr "deu:About us!"
+
+msgid "Dealers"
+msgstr "deu:Dealers!"
+
+msgid "Contacts"
+msgstr "deu:Contacts!"
+
+msgid "Category"
+msgstr "deu:Category!"
+
+msgid "Subcategory"
+msgstr "deu:Subcategory!"
+
+msgid "Tags"
+msgstr "deu:Tags!"
+
+msgid "You must log in to access this page"
+msgstr "deu:You must log in to access this page!"
+
+msgid "Error!"
+msgstr "deu:Error!!"
+
+msgid "Your session has been expired. Please, relogin to perform this action"
+msgstr "deu:Your session has been expired. Please, relogin to perform this action!"
+
+msgid "No records found"
+msgstr "deu:No records found!"
+
+msgid "Edit"
+msgstr "deu:Edit!"
+
+msgid "Delete"
+msgstr "deu:Delete!"
+
+msgid "Actions"
+msgstr "deu:Actions!"
+
+msgid "Upload counters"
+msgstr "deu:Upload counters!"
+
+msgid "Upload new products"
+msgstr "deu:Upload new products!"
+
+msgid "Update products"
+msgstr "deu:Update products!"
+
+msgid "1C Import"
+msgstr "deu:1C Import!"
+
+msgid "Check products by CSV"
+msgstr "deu:Check products by CSV!"
+
+msgid "Recalc formula"
+msgstr "deu:Recalc formula!"
+
+msgid "Process CSV file"
+msgstr "deu:Process CSV file!"
+
+msgid "UploadCounters_initCounters"
+msgstr "deu:UploadCounters_initCounters!"
+
+msgid "UploadCounters_updateCounters"
+msgstr "deu:UploadCounters_updateCounters!"
+
+msgid "UploadCounters_updateRest"
+msgstr "deu:UploadCounters_updateRest!"
+
+msgid "Check products data"
+msgstr "deu:Check products data!"
+
+msgid "Create products and needed data"
+msgstr "deu:Create products and needed data!"
+
+msgid "Processing was aborted by user"
+msgstr "deu:Processing was aborted by user!"
+
+msgid "Dashboard"
+msgstr "deu:Dashboard!"
+
+msgid "Start admin page"
+msgstr "deu:Start admin page!"
+
+msgid "Username"
+msgstr "deu:Username!"
+
+msgid "Password"
+msgstr "deu:Password!"
+
+msgid "Remember me"
+msgstr "deu:Remember me!"
+
+msgid "Login"
+msgstr "deu:Login!"
+
+msgid "Catalog"
+msgstr "deu:Catalog!"
+
+msgid "General"
+msgstr "deu:General!"
+
+msgid "Published"
+msgstr "deu:Published!"
+
+msgid "For Homepage"
+msgstr "deu:For Homepage!"
+
+msgid "Title"
+msgstr "deu:Title!"
+
+msgid "Teaser"
+msgstr "deu:Teaser!"
+
+msgid "Text"
+msgstr "deu:Text!"
+
+msgid "SEO"
+msgstr "deu:SEO!"
+
+msgid "Media"
+msgstr "deu:Media!"
+
+msgid "Photo"
+msgstr "deu:Photo!"
+
+msgid "here"
+msgstr "deu:here!"
+
+msgid "Province"
+msgstr "deu:Province!"
+
+msgid "URL"
+msgstr "deu:URL!"
+
+msgid "Map"
+msgstr "deu:Map!"
+
+msgid "Click on map to set up a marker"
+msgstr "deu:Click on map to set up a marker!"
+
+msgid "Region"
+msgstr "deu:Region!"
+
+msgid "Static content"
+msgstr "deu:Static content!"
+
+msgid "Date"
+msgstr "deu:Date!"
+
+msgid "Home page"
+msgstr "deu:Home page!"
+
+msgid "Preview"
+msgstr "deu:Preview!"
+
+msgid "Blocks"
+msgstr "deu:Blocks!"
+
+msgid "Company name"
+msgstr "deu:Company name!"
+
+msgid "Address"
+msgstr "deu:Address!"
+
+msgid "Phone"
+msgstr "deu:Phone!"
+
+msgid "System"
+msgstr "deu:System!"
+
+msgid "E-mail of admin"
+msgstr "deu:E-mail of admin!"
+
+msgid "Slider"
+msgstr "deu:Slider!"
+
+msgid "Utils"
+msgstr "deu:Utils!"
+
+msgid "Generate static labels"
+msgstr "deu:Generate static labels!"
+
+msgid "Clean image cache"
+msgstr "deu:Clean image cache!"
+
+msgid "Read more..."
+msgstr "deu:Read more...!"
+
+msgid "Back to global map"
+msgstr "deu:Back to global map!"
+
+msgid "Global Netherlands map"
+msgstr "deu:Global Netherlands map!"
+
+msgid "Pages"
+msgstr "deu:Pages!"
+
+msgid "search on site"
+msgstr "deu:search on site!"
+
+msgid "Save"
+msgstr "deu:Save!"
+
+msgid "Apply"
+msgstr "deu:Apply!"
+
+msgid "Admin area"
+msgstr "deu:Admin area!"
+
+msgid "Categories"
+msgstr "deu:Categories!"
+
+msgid "Regions"
+msgstr "deu:Regions!"
+
+msgid "My profile"
+msgstr "deu:My profile!"
+
+msgid "Log out"
+msgstr "deu:Log out!"
+
+msgid "Page not found"
+msgstr "deu:Page not found!"
+
+msgid "Articles"
+msgstr "deu:Articles!"
+
+msgid "Static pages"
+msgstr "deu:Static pages!"
+
+msgid "Subcategories"
+msgstr "deu:Subcategories!"
+
+msgid "Create article"
+msgstr "deu:Create article!"
+
+msgid "Create static page"
+msgstr "deu:Create static page!"
+
+msgid "Create news article"
+msgstr "deu:Create news article!"
+
+msgid "Create brand"
+msgstr "deu:Create brand!"
+
+msgid "Create tag"
+msgstr "deu:Create tag!"
+
+msgid "Create category"
+msgstr "deu:Create category!"
+
+msgid "Create subcategory"
+msgstr "deu:Create subcategory!"
+
+msgid "Create region"
+msgstr "deu:Create region!"
+
+msgid "Create dealer"
+msgstr "deu:Create dealer!"
+
+msgid "Edit article"
+msgstr "deu:Edit article!"
+
+msgid "Edit static page"
+msgstr "deu:Edit static page!"
+
+msgid "Edit news article"
+msgstr "deu:Edit news article!"
+
+msgid "Edit brand"
+msgstr "deu:Edit brand!"
+
+msgid "Edit tag"
+msgstr "deu:Edit tag!"
+
+msgid "Edit category"
+msgstr "deu:Edit category!"
+
+msgid "Edit subcategory"
+msgstr "deu:Edit subcategory!"
+
+msgid "Edit product"
+msgstr "deu:Edit product!"
+
+msgid "Edit region"
+msgstr "deu:Edit region!"
+
+msgid "Edit dealer"
+msgstr "deu:Edit dealer!"
+
+msgid "View article"
+msgstr "deu:View article!"
+
+msgid "View news article"
+msgstr "deu:View news article!"
+
+msgid "View product"
+msgstr "deu:View product!"
+
+msgid "Site development"
+msgstr "deu:Site development!"
+
+msgid "Our Partners"
+msgstr "deu:Our Partners!"
+
+msgid "Authorization"
+msgstr "deu:Authorization!"
+
+msgid "Our partners"
+msgstr "deu:Our partners!"
+
+msgid "All products"
+msgstr "deu:All products!"
+
+msgid "All news"
+msgstr "deu:All news!"
+
+msgid "Choose category"
+msgstr "deu:Choose category!"
+
+msgid "Download"
+msgstr "deu:Download!"
+
