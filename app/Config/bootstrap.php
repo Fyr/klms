@@ -10,7 +10,7 @@ Cache::config('tasks', array(
 ));
 
 CakePlugin::loadAll();
-Configure::write('Config.language', 'eng');
+Configure::write('Config.language', 'deu');
 //CakePlugin::load('DebugKit');
 
 Configure::write('Dispatcher.filters', array(
@@ -31,6 +31,7 @@ CakeLog::config('error', array(
 ));
 Configure::write('Exception.renderer', 'AppExceptionRenderer');
 
+define('HTTP', ($_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://');
 /* -= Custom settings =- */
 Configure::write('domain', array(
 	'url' => $_SERVER['SERVER_NAME'],
